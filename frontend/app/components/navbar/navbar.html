@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" ng-app="navbar">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/#!/home">NETFLOP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -6,14 +6,15 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Movies</a>
-            <a class="nav-item nav-link" href="#">TV Series</a>
-            <a class="nav-item nav-link disabled" href="#">Favorites</a>
+            <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="#">Movies</a>
+            <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="#">TV Series</a>
+            <a ng-if="$ctrl.loggedIn" class="nav-item nav-link disabled" href="#">Favorites</a>
         </div>
     </div>
     <form class="form-inline">
-        <a class="nav-item nav-link"  href="/#!/search">Search</a>
-        <a class="nav-item nav-link"  href="/#!/login">User</a>
+        <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/search">Search</a>
+        <a ng-if="!$ctrl.loggedIn" class="nav-item nav-link" href="/#!/login">Login</a>
+        <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/login">User</a>
     </form>
 
 </nav>

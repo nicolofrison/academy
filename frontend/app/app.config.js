@@ -8,6 +8,9 @@ config(['$routeProvider',
     when('/phones/:phoneId', {
       template: 'phone'
     }).
+    when('/login', {
+      template: '<my-login></my-login>'
+    }).
     otherwise('/phones');
   }
 ]);

@@ -1,0 +1,138 @@
+openapi: 3.0.0
+info:
+  title: netflop
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /videos:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-videos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                oneOf:
+                  - $ref: '#/components/schemas/Movies'
+                  - $ref: '#/components/schemas/Series'
+  /episodes:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-episodes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Episodes'
+  /movies:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      operationId: get-movies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movies'
+  /series:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-series
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Series'
+components:
+  schemas:
+    Movies:
+      title: Movies
+      type: object
+      x-tags:
+        - Movies
+      properties:
+        id:
+          type: number
+        description:
+          type: string
+        genre:
+          type: string
+        duration:
+          type: string
+        actors:
+          type: string
+        releaseDate:
+          type: string
+        creationDate:
+          type: string
+        quality:
+          type: string
+    Episodes:
+      title: Episodes
+      type: object
+      properties:
+        id:
+          type: number
+        description:
+          type: string
+        genre:
+          type: string
+        duration:
+          type: string
+        actors:
+          type: string
+        releaseDate:
+          type: string
+        creationDate:
+          type: string
+        quality:
+          type: string
+        season:
+          type: number
+        episode:
+          type: number
+        seriesId:
+          type: number
+      x-tags:
+        - Episodes
+    Series:
+      title: Series
+      type: object
+      properties:
+        id:
+          type: number
+        description:
+          type: string
+        genre:
+          type: string
+        duration:
+          type: string
+        actors:
+          type: string
+        releaseDate:
+          type: string
+        creationDate:
+          type: string
+      x-tags:
+        - Series

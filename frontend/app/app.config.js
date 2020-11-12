@@ -10,7 +10,8 @@ angular
       template: 'phone'
     }).
     when('/login', {
-      template: '<mynavbar></mynavbar>'
-    });
+      template: '<my-login></my-login>'
+    }).
+    otherwise('/phones');
   }
 ]);

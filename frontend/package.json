@@ -8,6 +8,7 @@
     "update-deps": "npm update",
     "postupdate-deps": "npm run copy-libs",
     "copy-libs": "cpx \"node_modules/{angular,angular-*,bootstrap/dist,jquery/dist}/**/*\" app/lib -C",
+    "generate:api": "rm -r app/lib/openapi && node_modules/.bin/openapi-generator-cli generate -g typescript-angularjs -i ../netflop.yaml -o app/lib/openapi",
     "pretest": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "npm install",
@@ -29,6 +30,7 @@
     "angular-route": "^1.8.2"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.4",
     "http-server": "^0.12.3"
   }
 }

@@ -1,6 +1,6 @@
 angular
     .module('app', [
         'myNavbar',
-        'ngRoute'
-    'angular.css.injector'
+        'ngRoute',
+        'angular.css.injector'
     ]);

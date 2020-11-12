@@ -1,1 +1,1 @@
-angular.module('phonecatApp').component('myLogin', { templateUrl: 'app/components/login/login.html'});
+angular.module('app').component('myLogin', { templateUrl: 'app/components/login/login.html'});

@@ -15,6 +15,9 @@ angular
     when('/home', {
       template: '<my-home></my-home>'
     }).
+    when('/search', {
+      template: '<my-search></my-search>'
+    }).
     otherwise('/home');
   }
 ]);

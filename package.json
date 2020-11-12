@@ -1,0 +1,23 @@
+{
+  "name": "academy-frontend",
+  "version": "1.0.0",
+  "description": "academy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolofrison/academy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolofrison/academy/issues"
+  },
+  "homepage": "https://github.com/nicolofrison/academy#readme",
+  "dependencies": {
+    "angular": "^1.8.2",
+    "angular-route": "^1.8.2"
+  }
+}

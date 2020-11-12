@@ -1,0 +1,36 @@
+{
+  "name": "academy-frontend",
+  "version": "1.0.0",
+  "description": "academy",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm run copy-libs",
+    "update-deps": "npm update",
+    "postupdate-deps": "npm run copy-libs",
+    "copy-libs": "cpx \"node_modules/{angular,angular-*,bootstrap/dist,jquery/dist}/**/*\" app/lib -C",
+    "generate:api": "rm -r app/lib/openapi && node_modules/.bin/openapi-generator-cli generate -g typescript-angularjs -i ../netflop.yaml -o app/lib/openapi",
+    "pretest": "npm install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npm install",
+    "start": "node_modules/.bin/http-server . -a localhost -p 8001 -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolofrison/academy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolofrison/academy/issues"
+  },
+  "homepage": "https://github.com/nicolofrison/academy#readme",
+  "dependencies": {
+    "cpx": "^1.5.0",
+    "angular": "^1.8.2",
+    "angular-route": "^1.8.2"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.4",
+    "http-server": "^0.12.3"
+  }
+}

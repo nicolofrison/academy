@@ -1,3 +1,4 @@
-angular.module('phonecatApp', [
-    'ngRoute'
+angular.module('app', [
+    'ngRoute',
+    'angular.css.injector'
 ]);

@@ -1,18 +1,26 @@
 <!doctype html>
-<html lang="en" ng-app="phonecatApp">
+<html lang="en">
     <head>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-        <script src="app/lib/angular/angular.min.js"></script>
-        <script src="app/lib/angular-route/angular-route.min.js"></script>
+        <!-- Angular modules -->
+        <script src="app/lib/angular/angular.js"></script>
+        <script src="app/lib/angular-route/angular-route.js"></script>
+
+        <!-- App module -->
         <script src="app/app.module.js"></script>
         <script src="app/app.config.js"></script>
+
+        <!-- Modules / Components -->
+        <script src="app/components/navbar/navbar.module.js"></script>
+        <script src="app/components/navbar/navbar.component.js"></script>
 
         <!-- <script src="phone-detail/phone-detail.module.js"></script> -->
         <!-- <script src="phone-detail/phone-detail.component.js"></script> -->
     </head>
-    <body>
-
-    <ng-view></ng-view>
+    <body ng-app="app">
+        <my-navbar></my-navbar>
+        <ng-view></ng-view>
 
     </body>
 </html>

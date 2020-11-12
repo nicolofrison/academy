@@ -1,3 +1,5 @@
-angular.module('phonecatApp', [
-    'ngRoute'
-]);
+angular
+    .module('app', [
+        'myNavbar',
+        'ngRoute'
+    ]);

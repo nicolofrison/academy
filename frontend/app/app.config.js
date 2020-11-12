@@ -12,6 +12,9 @@ angular
     when('/login', {
       template: '<my-login></my-login>'
     }).
-    otherwise('/phones');
+    when('/home', {
+      template: '<my-home></my-home>'
+    }).
+    otherwise('/home');
   }
 ]);

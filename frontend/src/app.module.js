@@ -1,7 +1,7 @@
 import angular from 'angular';
 // eslint-disable-next-line no-unused-vars
 import ngRoute from 'angular-route';
-import { videosService } from './services/episodes';
+import { videosService } from './services/videos';
 
 const apiBaseUrl = 'http://localhost:3100';
 

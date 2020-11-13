@@ -1,8 +1,6 @@
 <div class="container">
     <h1>MOVIES</h1><br><br>
-
     <form class="form-inline">
-        
         <select  id="inlineFormCustomSelectPref">
             <option value="genre" selected>GENRE</option>
             <option value="Animation">Animation</option>
@@ -13,29 +11,16 @@
         </select>
     </form><br><br>
 
-    <div class="row">
-        <h4>Last movies added</h4>
-    </div>
+    <h4>Last movies added</h4>
+    <my-row type-of-service="moviesCtrl.type"></my-row>
     
-    <my-row></my-row>
-    
+    <h4>Most popular</h4>
+    <my-row type-of-service="moviesCtrl.type"></my-row>
 
-    <div class="row">
-        <h4>Most popular</h4>
-    </div>
+    <h4>Movies for you</h4>
+    <my-row type-of-service="moviesCtrl.type"></my-row>
     
-    <my-row></my-row>
-
-    <div class="row">
-        <h4>Movies for you</h4>
-    </div>
-    
-    <my-row></my-row>
-
-    <div class="row">
-        <h4>Most liked</h4>
-    </div>
-    
-    <my-row></my-row>
+    <h4>Most liked</h4>
+    <my-row type-of-service="moviesCtrl.type"></my-row>
 
 </div>

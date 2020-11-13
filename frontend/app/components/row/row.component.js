@@ -1,31 +1,30 @@
 function rowController() {
     let type;
     this.$onInit = function() {
-        type = this.tipo;
-        console.log(type);
+        type = this.typeOfService;
+        /* console.log(type); */
+        const listFilm = [{
+            title: 'Finder'
+        },{
+            title: 'title2'
+        },{
+            title: 'title3'
+        },{
+            title: 'title4'
+        },{
+            title: 'title5'
+        }];
+    
+        this.listFilm  = listFilm;
+        console.log(this); 
     };
-
-    const listFilm = [{
-        title: 'Finder'
-    },{
-        title: 'title2'
-    },{
-        title: 'title3'
-    },{
-        title: 'title4'
-    },{
-        title: 'title5'
-    }];
-
-    this.listFilm  = listFilm;
-    console.log(type);
 }
 
 angular.module('app').component('myRow',
 {
     templateUrl: 'app/components/row/row.html',
     bindings: {
-        tipo: '<'
+        typeOfService: '<'
     },
     controller: rowController
 });

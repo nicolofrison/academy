@@ -2,12 +2,6 @@ angular
     .module('app')
     .config(['$routeProvider', function config($routeProvider) {
         $routeProvider.
-        when('/phones', {
-          template: 'phones'
-        }).
-        when('/phones/:phoneId', {
-          template: 'phone'
-        }).
         when('/login', {
           template: '<my-login></my-login>'
         }).
@@ -16,6 +10,12 @@ angular
         }).
         when('/search', {
           template: '<my-search></my-search>'
+        }).
+        when('/movies', {
+          template: '<my-movies></my-movies>'
+        }).
+        when('/details', {
+          template: '<my-details></my-details>'
         }).
         otherwise('/home');
       }

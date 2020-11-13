@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="#">Movies</a>
+            <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/movies">Movies</a>
             <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="#">TV Series</a>
             <a ng-if="$ctrl.loggedIn" class="nav-item nav-link disabled" href="#">Favorites</a>
         </div>
@@ -14,7 +14,8 @@
     <form class="form-inline">
         <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/search">Search</a>
         <a ng-if="!$ctrl.loggedIn" class="nav-item nav-link" href="/#!/login">Login</a>
-        <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/login">User</a>
+        <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/login">Profile</a>
+        <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/home">Logout</a>
     </form>
 
 </nav>

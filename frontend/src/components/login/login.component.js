@@ -2,7 +2,7 @@ import appModule from '../../app.module';
 
 appModule
   .component('myLogin', {
-    templateUrl: 'app/components/login/login.html',
+    templateUrl: '/src/components/login/login.html',
     controllerAs: 'loginCtrl',
     controller: ['storageService', function (storageService) {
       this.loginForm = {};

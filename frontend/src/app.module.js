@@ -1,7 +1,6 @@
 import angular from 'angular';
-// eslint-disable-next-line no-unused-vars
-import ngRoute from 'angular-route';
-// eslint-disable-next-line no-unused-vars
+import 'angular-route';
+import 'angular-css-injector';
 
 const appModule = angular
   .module('app', [

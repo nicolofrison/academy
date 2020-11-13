@@ -31,6 +31,8 @@
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.1.4",
+    "eslint": "^7.13.0",
+    "eslint-config-google": "^0.14.0",
     "http-server": "^0.12.3"
   }
 }

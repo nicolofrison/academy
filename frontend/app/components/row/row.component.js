@@ -3,7 +3,7 @@ angular.module('app').component('myRow',
     templateUrl: 'app/components/row/row.html',
     controller: function() {
         const listFilm = [{
-            title: 'title1'
+            title: 'Finder'
         },{
             title: 'title2'
         },{
@@ -13,7 +13,6 @@ angular.module('app').component('myRow',
         },{
             title: 'title5'
         }];
-
         this.listFilm  = listFilm; 
     }
 

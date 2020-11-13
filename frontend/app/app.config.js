@@ -1,6 +1,3 @@
-    when('/signUp', {
-      template: '<my-sign-up></my-sign-up>'
-    }).
 angular
     .module('app')
     .config(['$routeProvider', function config($routeProvider) {
@@ -19,6 +16,15 @@ angular
         }).
         when('/details', {
           template: '<my-details></my-details>'
+        }).
+        when('/signUp', {
+          template: '<my-sign-up></my-sign-up>'
+        }).
+        when('/profile', {
+          template: '<my-profile></my-profile>'
+        }).
+        when('/filmdetails', {
+          template: '<my-film-details></my-film-details>'
         }).
         otherwise('/home');
       }

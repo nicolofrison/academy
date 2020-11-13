@@ -1,4 +1,6 @@
 import {Videos,videosService} from './services/episodes.js';
+import angular from 'angular';
+import ngRoute from 'angular-route';
 
 const apiBaseUrl = 'http://localhost:3100';
 

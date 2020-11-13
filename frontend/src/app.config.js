@@ -5,6 +5,7 @@ import { videosService } from './services/episodes';
 
 //  components
 import './components/navbar/navbar.component';
+import './components/login/login.component';
 
 //  variables
 const apiBaseUrl = 'http://localhost:3100';

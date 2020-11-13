@@ -10,6 +10,7 @@ import './components/search/search.component';
 import './components/signUp/signUp.component';
 import './components/profile/profile.component';
 import './components/home/home.component';
+import './components/movies/movies.component';
 
 //  variables
 const apiBaseUrl = 'http://localhost:3100';

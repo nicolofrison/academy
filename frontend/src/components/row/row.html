@@ -2,10 +2,13 @@
     <div class="col" ng-repeat="item in $ctrl.listFilm">
         <p>{{item.title}}</p>
         <div ng-if="$ctrl.typeOfService == 'series'">
-            <a href="/#!/details"><image src="/assets/img/prova.png" height="200px" width="150"></image></a>
+            <a href="/#!/seriedetails"><image src="/assets/img/prova.png" height="200px" width="150"></image></a>
         </div>
         <div ng-if="$ctrl.typeOfService == 'movies'">
-            <a href="/#!/filmdetails"><image src="/assets/img/prova.png" height="200px" width="150"></image></a>
+            <a href="/#!/moviedetails"><image src="/assets/img/prova.png" height="200px" width="150"></image></a>
+        </div>
+        <div ng-if="$ctrl.typeOfService == 'episode'">
+            <a href="/#!/moviedetails"><image src="/assets/img/prova.png" height="200px" width="150"></image></a>
         </div>
     </div>
 </div>

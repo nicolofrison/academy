@@ -24,7 +24,7 @@ function rowController() {
 
 appModule
   .component('myRow', {
-    templateUrl: 'app/components/row/row.html',
+    templateUrl: '/src/components/row/row.html',
     bindings: {
       typeOfService: '<',
     },

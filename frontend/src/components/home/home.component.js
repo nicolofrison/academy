@@ -10,7 +10,7 @@ function homeController(cssInjector) {
 
 appModule
   .component('myHome', {
-    templateUrl: 'app/components/home/home.html',
+    templateUrl: '/src/components/home/home.html',
     controllerAs: 'homeCtrl',
     controller: ['cssInjector', homeController],
   });

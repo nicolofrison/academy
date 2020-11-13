@@ -11,7 +11,9 @@ import './components/signUp/signUp.component';
 import './components/profile/profile.component';
 import './components/home/home.component';
 import './components/movies/movies.component';
+import './components/movie_details/movie_details.component';
 import './components/series/series.component';
+import './components/serie_details/serie_details.component';
 
 //  variables
 const apiBaseUrl = 'http://localhost:3100';
@@ -31,8 +33,8 @@ appModule
       .when('/movies', {
         template: '<my-movies></my-movies>',
       })
-      .when('/details', {
-        template: '<my-details></my-details>',
+      .when('/series', {
+        template: '<my-series></my-series>',
       })
       .when('/signUp', {
         template: '<my-sign-up></my-sign-up>',
@@ -40,8 +42,11 @@ appModule
       .when('/profile', {
         template: '<my-profile></my-profile>',
       })
-      .when('/filmdetails', {
-        template: '<my-film-details></my-film-details>',
+      .when('/moviedetails', {
+        template: '<my-movie-details></my-movie-details>',
+      })
+      .when('/seriedetails', {
+        template: '<my-serie-details></my-serie-details>',
       })
       .otherwise('/home');
   }])

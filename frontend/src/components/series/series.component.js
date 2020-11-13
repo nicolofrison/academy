@@ -7,7 +7,7 @@ function seriesController() {
 
 appModule
   .component('mySeries', {
-    templateUrl: 'app/components/series/series.html',
+    templateUrl: '/src/components/series/series.html',
     controllerAs: 'seriesCtrl',
     controller: seriesController,
   });

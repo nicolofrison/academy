@@ -1,5 +1,3 @@
 .idea/
-frontend/app/lib
-frontend/src/lib
-frontend/dist
+frontend/dist/
 frontend/node_modules/

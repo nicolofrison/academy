@@ -4,7 +4,7 @@ info:
   version: '1.0'
   description: Netflop apis
 servers:
-  - url: 'http://localhost:3100'
+  - url: 'http://localhost:3000'
 paths:
   /videos:
     get:
@@ -97,7 +97,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReviewsPostRequest'
+              type: object
+              properties:
+                email:
+                  type: string
+                rating:
+                  type: integer
+                description:
+                  type: string
+                seriesId:
+                  type: string
+                moviesId:
+                  type: string
       description: Add a new review to a video
       tags:
         - Reviews
@@ -304,6 +315,8 @@ paths:
         '200':
           description: OK
       description: Remove like from video
+      tags:
+        - Likes
 components:
   schemas:
     Movie:

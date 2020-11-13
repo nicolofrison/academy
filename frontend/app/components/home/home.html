@@ -1,109 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<div class="container">
     
-    <link rel="stylesheet" href="./home.css" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home after log in</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <h4>Last movies added</h4>
-        </div>
-        <div class="row">
-          <div class="col">
-            <a href="film_details.html"><img src="film2.jpeg" height="200px" width="150"></img></a>
-          </div>
-          <div class="col">
-            <a href="film_details.html"><img src="film3.jpg" height="200px" width="150"></img></a>
-          </div>
-          <div class="col">
-            <a href="film_details.html"><img src="film4.jpg" height="200px" width="150"></img></a>
-          </div>
-          <div class="col">
-            <a href="film_details.html"><img src="film5.jpg" height="200px" width="150"></img></a>
-          </div>
-          <div class="col">
-            <a href="film_details.html"><img src="film6.jpg" height="200px" width="150"></img></a>
-          </div>     
-          
-        </div>
-        
+    <h4>Last movies added</h4>
+    <my-row type-of-service="homeCtrl.movies"></my-row>
+    <br>
+    <h4>Popular TV Series</h4>
+    <my-row type-of-service="homeCtrl.series"></my-row>
+    <br>
+    <h4>Movies for you</h4>
+    <my-row type-of-service="homeCtrl.movies"></my-row>
+    <br>
+    <h4>Most liked TV Series</h4>
+    <my-row type-of-service="homeCtrl.series"></my-row>
 
-        <div class="row">
-            <h4>Popular TV Series</h4>
-        </div>
-        <div class="row"> 
-            <div class="col">
-                <a href="serie_details.html"><image src="serie1.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="serie_details.html"><image src="serie2.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-            <a href="serie_details.html"><image src="serie3.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="serie_details.html"><image src="serie4.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="serie_details.html"><image src="serie5.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-            <a href="serie_details.html"><image src="serie6.jpg" height="200px" width="150"></image></a>
-            </div>
-        </div>
-
-        <div class="row">
-            <h4>Movies for you</h4>
-        </div>
-        <div class="row">
-            <div class="col">
-                <a href="film_details.html"><image src="film5.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="film_details.html"><image src="film6.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-            <a href="film_details.html"><image src="film11.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="film_details.html"><image src="film10.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="film_details.html"><image src="film8.jpg" height="200px" width="150"></image></a>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <h4>Most liked TV Series</h4>
-        </div>
-        <div class="row"> 
-            <div class="col">
-                <a href="serie_details.html"><image src="serie7.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="serie_details.html"><image src="serie8.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-            <a href="serie_details.html"><image src="serie9.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="serie_details.html"><image src="serie10.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-                <a href="serie_details.html"><image src="serie1.jpg" height="200px" width="150"></image></a>
-            </div>
-            <div class="col">
-            <a href="serie_details.html"><image src="serie2.jpg" height="200px" width="150"></image></a>
-            </div>
-        </div>
-    </div>
-    
-</body>
-</html>
+</div>

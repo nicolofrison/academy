@@ -1,1 +1,1 @@
-import _ from './app.module';
+import './app.config';

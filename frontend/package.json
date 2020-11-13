@@ -7,12 +7,12 @@
     "postinstall": "npm run copy-libs",
     "update-deps": "npm update",
     "postupdate-deps": "npm run copy-libs",
-    "copy-libs": "cpx \"node_modules/{angular,angular-*,bootstrap/dist,jquery/dist}/**/*\" app/lib -C",
+    "copy-libs": "cpx \"node_modules/{angular,angular-*,bootstrap/dist,jquery/dist}/**/*\" src/lib -C",
     "generate:api": "rm -r app/lib/openapi && node_modules/.bin/openapi-generator-cli generate -g typescript-angularjs -i ../netflop.yaml -o app/lib/openapi",
     "pretest": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "npm install",
-    "start": "node_modules/.bin/http-server . -a localhost -p 8001 -c-1"
+    "start": "npx webpack && npx serve"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,10 @@
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.1.4",
+    "axios": "^0.21.0",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
     "eslint": "^7.13.0",
     "eslint-config-google": "^0.14.0",
-    "http-server": "^0.12.3"
   }
 }

@@ -2,15 +2,13 @@
 <html lang="en" ng-app="app">
     <head>
 
-        <script src="app/lib/angular/angular.min.js"></script>
-        <script src="app/lib/angular-route/angular-route.min.js"></script>
-        <script src="app/app.module.js"></script>
-        <script src="app/app.config.js"></script>
+        <!-- <script src="app/lib/common-js/common.min.js"></script> -->
+        <script src="dist/main.js"></script>
 
         <!-- <script src="phone-detail/phone-detail.module.js"></script> -->
         <!-- <script src="phone-detail/phone-detail.component.js"></script> -->
     </head>
-    <body>
+    <body ng-controller="appCtrl">
 
     <ng-view></ng-view>
 

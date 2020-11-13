@@ -1,3 +1,6 @@
+    when('/signUp', {
+      template: '<my-sign-up></my-sign-up>'
+    }).
 angular
     .module('app')
     .config(['$routeProvider', function config($routeProvider) {

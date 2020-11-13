@@ -26,6 +26,9 @@ angular
         when('/filmdetails', {
           template: '<my-film-details></my-film-details>'
         }).
+        when('/series', {
+          template: '<my-series></my-series>'
+        }).
         otherwise('/home');
       }
     ])

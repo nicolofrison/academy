@@ -1,7 +1,8 @@
-angular.module('app').component('myRow', 
-{
-    templateUrl: 'app/components/row/row.html',
-    controller: function() {
+function rowController() {
+    let type;
+    this.$onInit = function() {
+        type = this.typeOfService;
+        /* console.log(type); */
         const listFilm = [{
             title: 'Finder'
         },{
@@ -13,8 +14,17 @@ angular.module('app').component('myRow',
         },{
             title: 'title5'
         }];
-        this.listFilm  = listFilm; 
-    }
+    
+        this.listFilm  = listFilm;
+        console.log(this); 
+    };
+}
 
-
+angular.module('app').component('myRow',
+{
+    templateUrl: 'app/components/row/row.html',
+    bindings: {
+        typeOfService: '<'
+    },
+    controller: rowController
 });

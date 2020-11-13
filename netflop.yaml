@@ -63,6 +63,165 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Series'
+  /login:
+    post:
+      summary: ''
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  loggedIn:
+                    type: boolean
+                  userId:
+                    type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+  /register:
+    post:
+      summary: ''
+      operationId: post-register
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                name:
+                  type: string
+                surname:
+                  type: string
+                birthDate:
+                  type: string
+                newsletter:
+                  type: boolean
+  /likes:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-likes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                moviesId:
+                  type: integer
+                seriesId:
+                  type: integer
+                episodesId:
+                  type: integer
+  /reviews:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+      operationId: get-reviews
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: moviesId
+        - schema:
+            type: integer
+          in: query
+          name: seriesId
+    post:
+      summary: ''
+      operationId: post-reviews
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                rating:
+                  type: integer
+                description:
+                  type: string
+                seriesId:
+                  type: string
+                moviesId:
+                  type: string
+  /favorites:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/Movies'
+                    - $ref: '#/components/schemas/Series'
+      operationId: get-favorites
+      description: ''
+      requestBody: {}
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: usersId
+    post:
+      summary: ''
+      operationId: post-favorites
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                moviesId:
+                  type: string
+                seriesId:
+                  type: string
 components:
   schemas:
     Movies:
@@ -135,3 +294,13 @@ components:
           type: string
       x-tags:
         - Series
+    Review:
+      title: Review
+      type: object
+      properties:
+        email:
+          type: string
+        rating:
+          type: integer
+        description:
+          type: string

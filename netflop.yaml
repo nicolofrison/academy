@@ -198,7 +198,6 @@ paths:
                     - $ref: '#/components/schemas/Series'
       operationId: get-favorites
       description: ''
-      requestBody: {}
       parameters:
         - schema:
             type: integer

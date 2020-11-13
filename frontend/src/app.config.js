@@ -9,6 +9,7 @@ import './components/login/login.component';
 import './components/search/search.component';
 import './components/signUp/signUp.component';
 import './components/profile/profile.component';
+import './components/home/home.component';
 
 //  variables
 const apiBaseUrl = 'http://localhost:3100';

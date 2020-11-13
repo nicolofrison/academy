@@ -16,10 +16,10 @@ import './components/series/series.component';
 import './components/serie_details/serie_details.component';
 
 //  variables
-const apiBaseUrl = 'http://localhost:3100';
+const apiBaseUrl: string = 'http://localhost:3100';
 
 appModule
-  .config(['$routeProvider', function config($routeProvider) {
+  .config(['$routeProvider', function config($routeProvider: any) {
     $routeProvider
       .when('/login', {
         template: '<my-login></my-login>',
@@ -51,16 +51,16 @@ appModule
       .otherwise('/home');
   }])
   .factory('storageService', () => ({
-    get(key) {
+    get(key: string): any {
       console.log('get');
       return sessionStorage.getItem(key);
     },
-    save(key, data) {
+    save(key: string, data: any) {
       console.log('set');
       sessionStorage.setItem(key, data);
     },
   }))
-  .controller('appCtrl', ['storageService', '$scope', async (storageService, $scope) => {
+  .controller('appCtrl', ['storageService', '$scope', async (storageService: any, $scope: any) => {
     $scope.isLogged = () => storageService.get('loggedIn') === 'true';
     videosService.setBaseUrl(apiBaseUrl);
     console.log(await videosService.getVideos());

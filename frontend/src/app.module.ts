@@ -6,6 +6,6 @@ const appModule = angular
   .module('app', [
     'ngRoute',
     'angular.css.injector',
-    'swxSessionStorage',
+    'swxSessionStorage'
   ]);
 export default appModule;

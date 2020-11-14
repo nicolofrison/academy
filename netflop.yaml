@@ -6,22 +6,6 @@ info:
 servers:
   - url: 'http://localhost:3100'
 paths:
-  /videos:
-    get:
-      summary: Your GET endpoint
-      tags:
-        - Videos
-      operationId: get-videos
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VideosGetResponse'
-      description: Return a list of movies and series
   /episodes:
     get:
       summary: Your GET endpoint
@@ -43,6 +27,91 @@ paths:
           in: query
           name: seriesId
       description: Return a list of episodes
+  /favorites:
+    post:
+      summary: ''
+      operationId: post-favorites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Favorite'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavoritesPostRequest'
+      tags:
+        - Favorites
+      description: Add a video to favorites
+  '/favorites/{favoritesId}':
+    parameters:
+        - schema:
+            type: string
+          name: favoritesId
+          in: path
+          required: true
+    delete:
+      summary: ''
+      operationId: delete-favorites-favoriteId
+      responses:
+        '200':
+          description: OK
+      description: Remove video from favorites
+      tags:
+        - Favorites
+  /likes:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Likes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Like'
+      operationId: get-likes
+      description: Return a list of likes
+    post:
+      summary: ''
+      operationId: post-likes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Like'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LikesPostRequest'
+      tags:
+        - Likes
+      description: Add like to a video
+  '/likes/{likesId}':
+    parameters:
+        - schema:
+            type: string
+          name: likesId
+          in: path
+          required: true
+    delete:
+      summary: ''
+      operationId: delete-likes-likesId
+      responses:
+        '200':
+          description: OK
+      description: Remove like from video
+      tags:
+        - Likes
   /login:
     post:
       summary: ''
@@ -62,6 +131,56 @@ paths:
       tags:
         - Login
       description: Login
+  /movies:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Movies
+      operationId: get-movies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - creationDate
+              - likes
+              - ratings
+              - views
+          in: query
+          name: orderBy
+          description: ''
+        - schema:
+            type: string
+          in: query
+          name: filterByGenre
+      description: Return a list of movies
+  /register:
+    post:
+      summary: ''
+      operationId: post-register
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsersRegisterRequest'
+      tags:
+        - Register
+      description: Register
   /reviews:
     get:
       summary: Your GET endpoint
@@ -97,133 +216,10 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                rating:
-                  type: integer
-                description:
-                  type: string
-                seriesId:
-                  type: string
-                moviesId:
-                  type: string
+              $ref: '#/components/schemas/ReviewsPostRequest'
       description: Add a new review to a video
       tags:
         - Reviews
-  '/users/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags:
-        - Users
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-      operationId: get-users-id
-      description: Return the user info
-  '/users/{userId}/favorites':
-    parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags:
-        - Users
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UsersFavoritesGetResponse'
-      operationId: get-users-userId-favorites
-      description: Return a list of user favorites videos
-  /favorites:
-    post:
-      summary: ''
-      operationId: post-favorites
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Favorite'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FavoritesPostRequest'
-      tags:
-        - Favorites
-      description: Add a video to favorites
-  /register:
-    post:
-      summary: ''
-      operationId: post-register
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UsersRegisterRequest'
-      tags:
-        - Register
-      description: Register
-  /likes:
-    get:
-      summary: Your GET endpoint
-      tags:
-        - Likes
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Like'
-      operationId: get-likes
-      description: Return a list of likes
-    post:
-      summary: ''
-      operationId: post-likes
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Like'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LikesPostRequest'
-      tags:
-        - Likes
-      description: Add like to a video
   /series:
     get:
       summary: Your GET endpoint
@@ -254,12 +250,52 @@ paths:
           in: query
           name: filterByGenre
       description: Return a list of series
-  /movies:
+  '/users/{userId}':
+    parameters:
+        - schema:
+            type: integer
+          name: userId
+          in: path
+          required: true
     get:
       summary: Your GET endpoint
       tags:
-        - Movies
-      operationId: get-movies
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      operationId: get-users-id
+      description: Return the user info
+  '/users/{userId}/favorites':
+    parameters:
+        - schema:
+            type: string
+          name: userId
+          in: path
+          required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersFavoritesGetResponse'
+      operationId: get-users-userId-favorites
+      description: Return a list of user favorites videos
+  /videos:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Videos
+      operationId: get-videos
       responses:
         '200':
           description: OK
@@ -268,81 +304,10 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Movie'
-      parameters:
-        - schema:
-            type: string
-            enum:
-              - creationDate
-              - likes
-              - ratings
-              - views
-          in: query
-          name: orderBy
-          description: ''
-        - schema:
-            type: string
-          in: query
-          name: filterByGenre
-      description: Return a list of movies
-  '/favorites/{favoritesId}':
-    parameters:
-      - schema:
-          type: string
-        name: favoritesId
-        in: path
-        required: true
-    delete:
-      summary: ''
-      operationId: delete-favorites-favoriteId
-      responses:
-        '200':
-          description: OK
-      description: Remove video from favorites
-      tags:
-        - Favorites
-  '/likes/{likesId}':
-    parameters:
-      - schema:
-          type: string
-        name: likesId
-        in: path
-        required: true
-    delete:
-      summary: ''
-      operationId: delete-likes-likesId
-      responses:
-        '200':
-          description: OK
-      description: Remove like from video
-      tags:
-        - Likes
+                  $ref: '#/components/schemas/VideosGetResponse'
+      description: Return a list of movies and series
 components:
   schemas:
-    Movie:
-      title: Movie
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        description:
-          type: string
-        genre:
-          type: string
-        duration:
-          type: string
-        actors:
-          type: string
-        releaseDate:
-          type: string
-        creationDate:
-          type: string
-        quality:
-          type: string
-      x-tags:
-        - Movies
     Episode:
       title: Episode
       type: object
@@ -401,6 +366,78 @@ components:
           type: integer
       required:
         - usersId
+    Like:
+      title: Like
+      type: object
+      properties:
+        id:
+          type: integer
+        usersId:
+          type: integer
+        episodesId:
+          type: integer
+        moviesId:
+          type: integer
+        seriesId:
+          type: integer
+    LikesPostRequest:
+      title: LikesPostRequest
+      type: object
+      x-tags:
+        - Likes
+      properties:
+        usersId:
+          type: integer
+        episodesId:
+          type: integer
+        moviesId:
+          type: integer
+        seriesId:
+          type: integer
+      required:
+        - usersId
+    Movie:
+      title: Movie
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        genre:
+          type: string
+        duration:
+          type: string
+        actors:
+          type: string
+        releaseDate:
+          type: string
+        creationDate:
+          type: string
+        quality:
+          type: string
+      x-tags:
+        - Movies
+    Review:
+      title: Review
+      type: object
+      x-tags:
+        - Reviews
+      properties:
+        id:
+          type: integer
+        usersId:
+          type: integer
+        moviesId:
+          type: integer
+        seriesId:
+          type: integer
+        rating:
+          type: integer
+        description:
+          type: string
     ReviewsPostRequest:
       title: ReviewsPostRequest
       type: object
@@ -417,6 +454,28 @@ components:
           type: string
         moviesId:
           type: string
+    Serie:
+      title: Serie
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        genre:
+          type: string
+        duration:
+          type: string
+        actors:
+          type: string
+        releaseDate:
+          type: string
+        creationDate:
+          type: string
+      x-tags:
+        - Series
     User:
       title: User
       type: object
@@ -481,73 +540,3 @@ components:
           - $ref: '#/components/schemas/Serie'
       x-tags:
         - Videos
-    Serie:
-      title: Serie
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        description:
-          type: string
-        genre:
-          type: string
-        duration:
-          type: string
-        actors:
-          type: string
-        releaseDate:
-          type: string
-        creationDate:
-          type: string
-      x-tags:
-        - Series
-    Review:
-      title: Review
-      type: object
-      x-tags:
-        - Reviews
-      properties:
-        id:
-          type: integer
-        usersId:
-          type: integer
-        moviesId:
-          type: integer
-        seriesId:
-          type: integer
-        rating:
-          type: integer
-        description:
-          type: string
-    LikesPostRequest:
-      title: LikesPostRequest
-      type: object
-      x-tags:
-        - Likes
-      properties:
-        usersId:
-          type: integer
-        episodesId:
-          type: integer
-        moviesId:
-          type: integer
-        seriesId:
-          type: integer
-      required:
-        - usersId
-    Like:
-      title: Like
-      type: object
-      properties:
-        id:
-          type: integer
-        usersId:
-          type: integer
-        episodesId:
-          type: integer
-        moviesId:
-          type: integer
-        seriesId:
-          type: integer

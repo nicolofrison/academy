@@ -1,4 +1,12 @@
 .idea/
+
 frontend/dist/
 frontend/node_modules/
 frontend/src/lib/
+
+backend/dist/
+backend/node_modules/
+backend/src/lib/
+backend/typings/
+
+backend/.env

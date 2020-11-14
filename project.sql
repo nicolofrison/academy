@@ -21,59 +21,59 @@ CREATE TABLE Details (
   genre VARCHAR(50) NOT NULL,
   duration TIME NOT NULL,
   actors TEXT NOT NULL,
-  release_date DATE,
-  creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  releaseDate DATE,
+  creationDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Episodes (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  details_id INT NOT NULL,
+  detailsId INT NOT NULL,
   quality VARCHAR(5) NOT NULL,
-  series_id INT NOT NULL,
+  seriesId INT NOT NULL,
   season INT NOT NULL,
   episode INT NOT NULL
 );
 
 CREATE TABLE Movies (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  details_id INT NOT NULL,
+  detailsId INT NOT NULL,
   quality VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE Series (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  details_id INT NOT NULL
+  detailsId INT NOT NULL
 );
 
 CREATE TABLE Favorites (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  movies_id INT,
-  series_id INT
+  userId INT NOT NULL,
+  moviesId INT,
+  seriesId INT
 );
 
 CREATE TABLE Likes (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  episodes_id INT,
-  movies_id INT,
-  series_id INT
+  userId INT NOT NULL,
+  episodesId INT,
+  moviesId INT,
+  seriesId INT
 );
 
 CREATE TABLE Reviews (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  movies_id INT,
-  series_id INT,
+  userId INT NOT NULL,
+  moviesId INT,
+  seriesId INT,
   rating INT(1) NOT NULL,
   description TEXT
 );
 
 CREATE TABLE Views (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  episodes_id INT,
-  movies_id INT
+  userId INT NOT NULL,
+  episodesId INT,
+  moviesId INT
 );
 
 CREATE TABLE Users (
@@ -81,36 +81,36 @@ CREATE TABLE Users (
   email VARCHAR(50) NOT NULL UNIQUE,
   name VARCHAR(50) NOT NULL,
   surname VARCHAR(50) NOT NULL,
-  birth_date DATE NOT NULL,
+  birthDate DATE NOT NULL,
   password VARCHAR(50) NOT NULL,
   newsletter TINYINT(1) NOT NULL DEFAULT false
 );
 
-ALTER TABLE `Episodes` ADD CONSTRAINT `FK_episodes_details_id` FOREIGN KEY (`details_id`) REFERENCES `Details`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Movies` ADD CONSTRAINT `FK_movies_details_id` FOREIGN KEY (`details_id`) REFERENCES `Details`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Series` ADD CONSTRAINT `FK_series_details_id` FOREIGN KEY (`details_id`) REFERENCES `Details`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Episodes` ADD CONSTRAINT `FKEpisodesDetailsId` FOREIGN KEY (`detailsId`) REFERENCES `Details`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Movies` ADD CONSTRAINT `FKMoviesDetailsId` FOREIGN KEY (`detailsId`) REFERENCES `Details`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Series` ADD CONSTRAINT `FKSeriesDetailsId` FOREIGN KEY (`detailsId`) REFERENCES `Details`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE `Episodes` ADD CONSTRAINT `FK_episodes_series_id` FOREIGN KEY (`series_id`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Episodes` ADD CONSTRAINT `FKEpisodesSeriesId` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE `Favorites` ADD CONSTRAINT `FK_favorites_users_id` FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Favorites` ADD CONSTRAINT `FK_favorites_movies_id` FOREIGN KEY (`movies_id`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Favorites` ADD CONSTRAINT `FK_favorites_series_id` FOREIGN KEY (`series_id`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Favorites` ADD CONSTRAINT `FKFavoritesUsersId` FOREIGN KEY (`userId`) REFERENCES `Users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Favorites` ADD CONSTRAINT `FKFavoritesMoviesId` FOREIGN KEY (`moviesId`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Favorites` ADD CONSTRAINT `FKFavoritesSeriesId` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE `Likes` ADD CONSTRAINT `FK_likes_users_id` FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Likes` ADD CONSTRAINT `FK_likes_episodes_id` FOREIGN KEY (`episodes_id`) REFERENCES `Episodes`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Likes` ADD CONSTRAINT `FK_likes_movies_id` FOREIGN KEY (`movies_id`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Likes` ADD CONSTRAINT `FK_likes_series_id` FOREIGN KEY (`series_id`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Likes` ADD CONSTRAINT `FKLikesUsersId` FOREIGN KEY (`userId`) REFERENCES `Users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Likes` ADD CONSTRAINT `FKLikesEpisodesId` FOREIGN KEY (`episodesId`) REFERENCES `Episodes`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Likes` ADD CONSTRAINT `FKLikesMoviesId` FOREIGN KEY (`moviesId`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Likes` ADD CONSTRAINT `FKLikesSeriesId` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE `Reviews` ADD CONSTRAINT `FK_reviews_users_id` FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Reviews` ADD CONSTRAINT `FK_reviews_movies_id` FOREIGN KEY (`movies_id`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Reviews` ADD CONSTRAINT `FK_reviews_series_id` FOREIGN KEY (`series_id`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Reviews` ADD CONSTRAINT `FKReviewsUsersId` FOREIGN KEY (`userId`) REFERENCES `Users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Reviews` ADD CONSTRAINT `FKReviewsMoviesId` FOREIGN KEY (`moviesId`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Reviews` ADD CONSTRAINT `FKReviewsSeriesId` FOREIGN KEY (`seriesId`) REFERENCES `Series`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE `Views` ADD CONSTRAINT `FK_views_users_id` FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Views` ADD CONSTRAINT `FK_views_episodes_id` FOREIGN KEY (`episodes_id`) REFERENCES `Episodes`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `Views` ADD CONSTRAINT `FK_views_movies_id` FOREIGN KEY (`movies_id`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Views` ADD CONSTRAINT `FKViewsUsersId` FOREIGN KEY (`userId`) REFERENCES `Users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Views` ADD CONSTRAINT `FKViewsEpisodesId` FOREIGN KEY (`episodesId`) REFERENCES `Episodes`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `Views` ADD CONSTRAINT `FKViewsMoviesId` FOREIGN KEY (`moviesId`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-CREATE VIEW `V_Episodes`  AS SELECT `D`.*, `E`.`season`, `E`.`episode`, `E`.`quality`, COUNT(`L`.`id`) AS `likes`, COUNT(`V`.`id`) AS `views` FROM `Details` `D` INNER JOIN `Episodes` `E` ON `D`.`id` = `E`.`details_id` INNER JOIN `Likes` `L` ON `E`.`id` = `L`.`episodes_id` INNER JOIN `Views` `V` ON `E`.`id` = `V`.`episodes_id`;
-CREATE VIEW `V_Movies`  AS SELECT `D`.*, `M`.`quality`, COUNT(`L`.`id`) AS `likes`, AVG(`R`.`rating`) AS `rating`, COUNT(`V`.`id`) AS `views` FROM `Details` `D` INNER JOIN `Movies` `M` ON `D`.`id` = `M`.`details_id` INNER JOIN `Likes` `L` ON `M`.`id` = `L`.`episodes_id` INNER JOIN `Reviews` `R` ON `M`.`id` = `R`.`movies_id` INNER JOIN `Views` `V` ON `M`.`id` = `V`.`movies_id`;
-CREATE VIEW `V_Series`  AS SELECT `D`.*, MAX(DISTINCT `E`.`season`) AS `seasons_number`, COUNT(`L`.`id`) AS `likes`, AVG(`R`.`rating`) AS `rating` FROM `Details` `D` INNER JOIN `Series` `S` ON `D`.`id` = `S`.`details_id` INNER JOIN `Episodes` `E` ON `S`.`id` = `E`.`series_id` INNER JOIN `Likes` `L` ON `S`.`id` = `L`.`series_id` INNER JOIN `Reviews` `R` ON `S`.`id` = `R`.`series_id`;
+CREATE VIEW `V_Episodes`  AS SELECT `D`.*, `E`.`season`, `E`.`episode`, `E`.`quality`, COUNT(`L`.`id`) AS `likes`, COUNT(`V`.`id`) AS `views` FROM `Details` `D` INNER JOIN `Episodes` `E` ON `D`.`id` = `E`.`detailsId` INNER JOIN `Likes` `L` ON `E`.`id` = `L`.`episodesId` INNER JOIN `Views` `V` ON `E`.`id` = `V`.`episodesId`;
+CREATE VIEW `V_Movies`  AS SELECT `D`.*, `M`.`quality`, COUNT(`L`.`id`) AS `likes`, AVG(`R`.`rating`) AS `rating`, COUNT(`V`.`id`) AS `views` FROM `Details` `D` INNER JOIN `Movies` `M` ON `D`.`id` = `M`.`detailsId` INNER JOIN `Likes` `L` ON `M`.`id` = `L`.`episodesId` INNER JOIN `Reviews` `R` ON `M`.`id` = `R`.`moviesId` INNER JOIN `Views` `V` ON `M`.`id` = `V`.`moviesId`;
+CREATE VIEW `V_Series`  AS SELECT `D`.*, MAX(DISTINCT `E`.`season`) AS `seasonsNumber`, COUNT(`L`.`id`) AS `likes`, AVG(`R`.`rating`) AS `rating` FROM `Details` `D` INNER JOIN `Series` `S` ON `D`.`id` = `S`.`detailsId` INNER JOIN `Episodes` `E` ON `S`.`id` = `E`.`seriesId` INNER JOIN `Likes` `L` ON `S`.`id` = `L`.`seriesId` INNER JOIN `Reviews` `R` ON `S`.`id` = `R`.`seriesId`;
 
 SET FOREIGN_KEY_CHECKS = 1;

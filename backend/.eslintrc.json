@@ -1,0 +1,48 @@
+{
+    "env": {
+        "node": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true
+            },
+            "node": {
+                "extensions": [".js",".jsx","ts",".tsx"],
+                "moduleDirectory": ["node_modules"]
+            }
+        }
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "import"
+    ],
+    "rules": {
+    },
+    "overrides": [
+        {
+            "files": ["src/**.ts"],
+            "rules": {
+                "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+                "indent": ["error", 2,
+                    {
+                        "FunctionDeclaration": {"parameters": 2},
+                        "FunctionExpression": {"parameters": 2}
+                    }
+                ]
+            }
+        }
+    ]
+}

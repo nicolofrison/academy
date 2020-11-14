@@ -15,6 +15,6 @@
         <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/search">Search</a>
         <a ng-if="!$ctrl.loggedIn" class="nav-item nav-link" href="/#!/login">Login</a>
         <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/profile">Profile</a>
-        <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="/#!/home">Logout</a>
+        <a ng-if="$ctrl.loggedIn" class="nav-item nav-link" href="#" ng-click="$ctrl.logout()">Logout</a>
     </form>
 </nav>

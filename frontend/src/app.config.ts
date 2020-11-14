@@ -2,6 +2,7 @@ import appModule from './app.module';
 
 //  services
 import { videosService } from './services/videos';
+import {EpisodesApi} from "./lib/openapi/api";
 
 //  components
 import './components/navbar/navbar.component';
@@ -14,7 +15,6 @@ import './components/movies/movies.component';
 import './components/movie_details/movie_details.component';
 import './components/series/series.component';
 import './components/serie_details/serie_details.component';
-import {DefaultApi} from "./lib/openapi/api";
 
 //  variables
 const apiBaseUrl: string = 'http://localhost:3100';
@@ -61,9 +61,9 @@ appModule
       sessionStorage.setItem(key, data);
     },
   }))
-  .service('api', DefaultApi)
-  .controller('appCtrl', ['storageService', '$scope', 'api', async (storageService: any, $scope: any, api: DefaultApi) => {
-    console.log(await api.getEpisodes());
+  .service('episodesApi', EpisodesApi)
+  .controller('appCtrl', ['storageService', '$scope', 'episodesApi', async (storageService: any, $scope: any, episodesApi: EpisodesApi) => {
+    console.log(await episodesApi.getEpisodes());
     $scope.isLogged = () => storageService.get('loggedIn') === 'true';
     videosService.setBaseUrl(apiBaseUrl);
     console.log(await videosService.getVideos());

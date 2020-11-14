@@ -8,7 +8,6 @@
     "generate:api": "rm -rf src/lib/openapi && npx openapi-generator-cli generate -g typescript-axios -i ../netflop.yaml -o src/lib/openapi",
     "pretest": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "npm install",
     "start": "npx webpack && npx serve"
   },
   "repository": {

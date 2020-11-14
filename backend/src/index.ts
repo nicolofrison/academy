@@ -1,12 +1,17 @@
-import express = require('express');
+import UsersController from '@controllers/UsersController';
+import * as Express from 'express';
 
-// Create a new express application instance
-const app: express.Application = express();
+const express = require('express');
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+require('dotenv').config();
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+const app: Express.Application = express();
+const port = process.env.APP_PORT;
+app.use(express.json());
+
+//  Controllers
+UsersController.init(app);
+
+app.listen(port, async () => {
+  console.log(`Netflop backend listening at http://localhost:${port}`);
 });

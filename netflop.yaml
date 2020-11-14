@@ -338,6 +338,19 @@ components:
           type: number
       x-tags:
         - Episodes
+      required:
+        - id
+        - title
+        - description
+        - genre
+        - duration
+        - actors
+        - releaseDate
+        - creationDate
+        - quality
+        - season
+        - episode
+        - seriesId
     Favorite:
       title: Favorite
       type: object
@@ -352,6 +365,9 @@ components:
           type: integer
         seriesId:
           type: integer
+      required:
+        - id
+        - usersId
     FavoritesPostRequest:
       title: FavoritesPostRequest
       type: object
@@ -380,6 +396,9 @@ components:
           type: integer
         seriesId:
           type: integer
+      required:
+        - id
+        - usersId
     LikesPostRequest:
       title: LikesPostRequest
       type: object
@@ -420,6 +439,16 @@ components:
           type: string
       x-tags:
         - Movies
+      required:
+        - id
+        - title
+        - description
+        - genre
+        - duration
+        - actors
+        - releaseDate
+        - creationDate
+        - quality
     Review:
       title: Review
       type: object
@@ -438,6 +467,10 @@ components:
           type: integer
         description:
           type: string
+      required:
+        - id
+        - usersId
+        - rating
     ReviewsPostRequest:
       title: ReviewsPostRequest
       type: object
@@ -454,6 +487,9 @@ components:
           type: string
         moviesId:
           type: string
+      required:
+        - usersId
+        - rating
     Serie:
       title: Serie
       type: object
@@ -476,6 +512,15 @@ components:
           type: string
       x-tags:
         - Series
+      required:
+        - id
+        - title
+        - description
+        - genre
+        - duration
+        - actors
+        - releaseDate
+        - creationDate
     User:
       title: User
       type: object
@@ -492,8 +537,16 @@ components:
           type: string
         newsletter:
           type: boolean
+        password:
+          type: string
         id:
           type: integer
+      required:
+        - email
+        - name
+        - surname
+        - birthDate
+        - newsletter
     UsersFavoritesGetResponse:
       title: UserFavoritesGetResponse
       type: array
@@ -511,6 +564,9 @@ components:
         password:
           type: string
       type: object
+      required:
+        - email
+        - password
       x-tags:
         - Users
     UsersRegisterRequest:
@@ -529,6 +585,13 @@ components:
           type: string
         newsletter:
           type: boolean
+      required:
+        - email
+        - password
+        - name
+        - surname
+        - birthDate
+        - newsletter
       x-tags:
         - Users
     VideosGetResponse:

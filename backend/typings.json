@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "mysql": "registry:npm/mysql#2.11.1+20161114232222"
-  }
-}

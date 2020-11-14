@@ -1,8 +1,10 @@
 .idea/
+
 frontend/dist/
 frontend/node_modules/
 frontend/src/lib/
-backend/node_modules/
-backend/dist/
 
+backend/dist/
+backend/node_modules/
+backend/src/lib/
 backend/typings/

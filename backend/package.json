@@ -1,0 +1,29 @@
+{
+  "name": "academy-backend",
+  "version": "1.0.0",
+  "description": "academy-backend",
+  "main": "index.js",
+  "scripts": {
+    "remove:api": "rm -r src/lib/openapi/api && rm src/lib/openapi/*.*",
+    "generate:api": "rm -rf src/lib/openapi && npx openapi-generator-cli generate -g typescript-angularjs -i ../netflop.yaml -o src/lib/openapi && npm run remove:api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolofrison/academy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolofrison/academy/issues"
+  },
+  "homepage": "https://github.com/nicolofrison/academy#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.4",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "typescript": "^4.0.5"
+  }
+}

@@ -1,17 +1,33 @@
 {
-  "name": "chalk-example",
+  "name": "academy-backend",
   "version": "1.0.0",
-  "description": "chalk example",
-  "main": "user.js",
+  "description": "academy-backend",
+  "main": "index.js",
   "scripts": {
+    "remove:api": "rm -r src/lib/openapi/api && rm src/lib/openapi/*.*",
+    "generate:api": "rm -rf src/lib/openapi && npx openapi-generator-cli generate -g typescript-angularjs -i ../netflop.yaml -o src/lib/openapi && npm run remove:api",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolofrison/academy.git"
   },
   "author": "Deb",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolofrison/academy/issues"
+  },
+  "homepage": "https://github.com/nicolofrison/academy#readme",
   "dependencies": {
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "mysql": "^2.18.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.4",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "typescript": "^4.0.5"
+  }
 }

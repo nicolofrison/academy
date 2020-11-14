@@ -1,17 +1,19 @@
 <!doctype html>
-<html lang="en" ng-app="app">
+<html lang="en">
     <head>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-        <!-- <script src="app/lib/common-js/common.min.js"></script> -->
-        <script src="dist/main.js"></script>
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script type="text/javascript" src="node_modules/angular-swx-session-storage/release/swx-session-storage.min.js"></script>
+        <script src="dist/bundle.js"></script>
 
-        <!-- <script src="phone-detail/phone-detail.module.js"></script> -->
-        <!-- <script src="phone-detail/phone-detail.component.js"></script> -->
     </head>
-    <body ng-controller="appCtrl">
 
-    <ng-view></ng-view>
-
+    <body ng-app="app">
+        <div ng-controller="appCtrl">
+            <my-navbar logged-in="isLogged()"></my-navbar>
+            <ng-view></ng-view>
+        </div>
     </body>
 </html>
 

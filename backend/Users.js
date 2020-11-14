@@ -33,20 +33,20 @@ connection.connect(async function (err){
             password VARCHAR(50) NOT NULL,
             newsletter TINYINT(1) NOT NULL DEFAULT false
         )ENGINE=INNODB; 
-        `, []);    
+        `, []);
     func(`INSERT INTO Users (email, name, surname, birth_date, password, newsletter) VALUES (?, ?, ?, ?, ?, ?)`,
-            ['prova2', 'prova2', 'prova3', '31/08/1999', 'prova5', true]);                   
-    console.log('connection as id ' + connection.threadId);  
+            ['prova2', 'prova2', 'prova3', '1999/08/31', 'prova5', true]);
+    console.log('connection as id ' + connection.threadId);
 });
 
 
  function func (query, argomenti){
-     return new Promise((resolve, reject) => {       
+     return new Promise((resolve, reject) => {
          connection.query(query, argomenti, function(error, results, fields){
              if(error) reject(error);
              resolve(results);
-         });       
-    });  
+         });
+    });
 };
 
 app.get(`/users`, async (req, res) => {

@@ -1,5 +1,5 @@
 import appModule from '../../app.module';
-import { SearchFilters } from '../../models/SearchFilters';
+import SearchFilters from '../../models/SearchFilters';
 
 const cssPath = '/src/components/search/search.css';
 

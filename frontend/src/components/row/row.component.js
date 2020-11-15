@@ -4,7 +4,6 @@ function rowController() {
   let type;
   this.$onInit = function () {
     type = this.typeOfService;
-    /* console.log(type); */
     const listFilm = [{
       title: 'Finder',
     }, {
@@ -18,7 +17,6 @@ function rowController() {
     }];
 
     this.listFilm = listFilm;
-    console.log(this);
   };
 }
 

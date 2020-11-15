@@ -63,7 +63,11 @@ appModule
   }))
   .service('episodesApi', EpisodesApi)
   .controller('appCtrl', ['storageService', '$scope', 'episodesApi', async (storageService: any, $scope: any, episodesApi: EpisodesApi) => {
-    console.log(await episodesApi.getEpisodes());
+    try {
+      console.log(await episodesApi.getEpisodes());
+    } catch (e) {
+      console.log('Get episodes error');
+    }
     $scope.isLogged = () => storageService.get('loggedIn') === 'true';
     videosService.setBaseUrl(apiBaseUrl);
     console.log(await videosService.getVideos());

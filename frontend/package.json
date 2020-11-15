@@ -4,6 +4,7 @@
   "description": "academy",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run generate:api",
     "update-deps": "npm update",
     "generate:api": "rm -rf src/lib/openapi && npx openapi-generator-cli generate -g typescript-axios -i ../netflop.yaml -o src/lib/openapi",
     "pretest": "npm install",

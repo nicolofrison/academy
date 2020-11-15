@@ -360,9 +360,9 @@ components:
           type: string
         quality:
           type: string
-        season:
+        seasonNumber:
           type: number
-        episode:
+        episodeNumber:
           type: number
         seriesId:
           type: number
@@ -378,8 +378,8 @@ components:
         - releaseDate
         - creationDate
         - quality
-        - season
-        - episode
+        - seasonNumber
+        - episodeNumber
         - seriesId
     Favorite:
       title: Favorite
@@ -533,7 +533,7 @@ components:
         genre:
           type: string
         duration:
-          type: string
+          type: integer
         actors:
           type: string
         releaseDate:

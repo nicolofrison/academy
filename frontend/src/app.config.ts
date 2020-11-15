@@ -5,6 +5,7 @@ import './directives/ngAlias.directive'
 
 //  services
 import './services/episodes.service';
+import './services/favorites.service';
 import './services/movies.service';
 import './services/series.service';
 import './services/session.service';
@@ -21,6 +22,7 @@ import './components/movie_details/movie_details.component';
 import './components/series/series.component';
 import './components/serie_details/serie_details.component';
 import './components/searchResults/searchResults.component';
+import './components/favorites/favorites.component';
 
 appModule
   .config(['$routeProvider', function config($routeProvider: any) {
@@ -54,6 +56,9 @@ appModule
       })
       .when('/searchresults', {
         template: '<my-search-results></my-search-results>',
+      })
+      .when('/favorites', {
+        template: '<my-favorites></my-favorites>',
       })
       .otherwise('/home');
   }])

@@ -3,6 +3,7 @@ import appModule from '../../app.module';
 function navbarController(sessionService, $location) {
   this.logout = () => {
     sessionService.save('loggedIn', false);
+    sessionService.save('userId', undefined);
     $location.path('/home');
   };
 }

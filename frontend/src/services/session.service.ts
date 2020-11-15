@@ -1,7 +1,7 @@
 import appModule from '../app.module';
 
 appModule
-  .service('storageService', function () {
+  .service('sessionService', function () {
     this.get = (key: string): any => {
       //  console.log('get');
       return sessionStorage.getItem(key);

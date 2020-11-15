@@ -20,7 +20,7 @@ import './components/movies/movies.component';
 import './components/movie_details/movie_details.component';
 import './components/series/series.component';
 import './components/serie_details/serie_details.component';
-import './components/search_results/search_results.component';
+import './components/searchResults/searchResults.component';
 
 appModule
   .config(['$routeProvider', function config($routeProvider: any) {
@@ -57,6 +57,6 @@ appModule
       })
       .otherwise('/home');
   }])
-  .controller('appCtrl', ['storageService', '$scope', async (storageService: any, $scope: any) => {
-    $scope.isLogged = () => storageService.get('loggedIn') === 'true';
+  .controller('appCtrl', ['sessionService', '$scope', async (sessionService: any, $scope: any) => {
+    $scope.isLogged = () => sessionService.get('loggedIn') === 'true';
   }]);

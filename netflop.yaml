@@ -46,6 +46,26 @@ paths:
       tags:
         - Favorites
       description: Add a video to favorites
+    get:
+      summary: ''
+      operationId: get-favorites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Favorite'
+      description: Return a list of favorites
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: usersId
+      tags:
+        - Favorites
   '/favorites/{favoritesId}':
     parameters:
       - schema:
@@ -180,6 +200,26 @@ paths:
           in: query
           name: orderType
       description: Return a list of movies
+  '/movies/{moviesId}':
+    parameters:
+      - schema:
+          type: string
+        name: moviesId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Movies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+      operationId: get-movie-by-Id
+      description: Return the movie info
   /register:
     post:
       summary: ''
@@ -287,6 +327,26 @@ paths:
           in: query
           name: orderType
       description: Return a list of series
+  '/series/{seriesId}':
+    parameters:
+      - schema:
+          type: string
+        name: seriesId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Series
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Serie'
+      operationId: get-serie-by-Id
+      description: Return the serie info
   '/users/{userId}':
     parameters:
       - schema:
@@ -327,7 +387,6 @@ paths:
                 $ref: '#/components/schemas/UsersFavoritesGetResponse'
       operationId: get-users-userId-favorites
       description: Return a list of user favorites videos
-  /videos: {}
 components:
   schemas:
     Episode:

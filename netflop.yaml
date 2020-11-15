@@ -48,11 +48,11 @@ paths:
       description: Add a video to favorites
   '/favorites/{favoritesId}':
     parameters:
-        - schema:
-            type: string
-          name: favoritesId
-          in: path
-          required: true
+      - schema:
+          type: string
+        name: favoritesId
+        in: path
+        required: true
     delete:
       summary: ''
       operationId: delete-favorites-favoriteId
@@ -98,11 +98,11 @@ paths:
       description: Add like to a video
   '/likes/{likesId}':
     parameters:
-        - schema:
-            type: string
-          name: likesId
-          in: path
-          required: true
+      - schema:
+          type: string
+        name: likesId
+        in: path
+        required: true
     delete:
       summary: ''
       operationId: delete-likes-likesId
@@ -252,11 +252,11 @@ paths:
       description: Return a list of series
   '/users/{userId}':
     parameters:
-        - schema:
-            type: integer
-          name: userId
-          in: path
-          required: true
+      - schema:
+          type: integer
+        name: userId
+        in: path
+        required: true
     get:
       summary: Your GET endpoint
       tags:
@@ -272,11 +272,11 @@ paths:
       description: Return the user info
   '/users/{userId}/favorites':
     parameters:
-        - schema:
-            type: string
-          name: userId
-          in: path
-          required: true
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
     get:
       summary: Your GET endpoint
       tags:
@@ -306,6 +306,36 @@ paths:
                 items:
                   $ref: '#/components/schemas/VideosGetResponse'
       description: Return a list of movies and series
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: filterByName
+        - schema:
+            type: string
+          in: query
+          name: filterByGenre
+        - schema:
+            type: string
+          in: query
+          name: filterByReleaseDate
+        - schema:
+            type: number
+          in: query
+          name: filterByRating
+        - schema:
+            type: string
+            enum:
+              - movies
+              - series
+          in: query
+          name: filterByType
+        - schema:
+            type: string
+            pattern: "^\\[\\w+(,\\w+)?\\]$"
+            example: '[lastAdded,desc]'
+          in: query
+          name: orderBy
 components:
   schemas:
     Episode:

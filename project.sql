@@ -145,3 +145,9 @@ INSERT INTO `Episodes` (id, detailsId, seriesId, seasonNumber, episodeNumber, qu
 INSERT INTO `Episodes` (id, detailsId, seriesId, seasonNumber, episodeNumber, quality) VALUES (5, 12, 2, 3, 2, '480');
 INSERT INTO `Episodes` (id, detailsId, seriesId, seasonNumber, episodeNumber, quality) VALUES (6, 13, 3, 6, 1, '1080');
 INSERT INTO `Episodes` (id, detailsId, seriesId, seasonNumber, episodeNumber, quality) VALUES (7, 14, 3, 6, 2, '1080');
+
+INSERT INTO `Users` (id, email, name, surname, birthDate, password, newsletter) VALUES (1, 'user1@email', 'user1', 'user1', '2000-01-01', 'user1', false);
+INSERT INTO `Users` (id, email, name, surname, birthDate, password, newsletter) VALUES (2, 'user2@email', 'user2', 'user2', '2000-02-02', 'user2', true);
+INSERT INTO `Users` (id, email, name, surname, birthDate, password, newsletter) VALUES (3, 'user3@email', 'user3', 'user3', '2000-03-03', 'user3', false);
+INSERT INTO `Users` (id, email, name, surname, birthDate, password, newsletter) VALUES (4, 'user4@email', 'user4', 'user4', '2000-04-04', 'user4', false);
+

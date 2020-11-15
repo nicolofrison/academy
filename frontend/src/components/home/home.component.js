@@ -1,8 +1,16 @@
 import appModule from '../../app.module';
 import '../row/row.component';
 
+const cssPath = '/src/components/home/home.css';
+
 function homeController(cssInjector) {
-  cssInjector.add('/src/components/home/home.css');
+  this.$onInit = function () {
+    cssInjector.add(cssPath);
+  };
+  this.$onDestroy = function () {
+    cssInjector.remove(cssPath);
+  };
+
   const ctrl = this;
   ctrl.movies = 'movies';
   ctrl.series = 'series';

@@ -10,8 +10,8 @@ function resultsController($routeParams: ISearchFilters, moviesService: any, ser
   const updateVideosListWithMovies = (moviesList: any) => {
     console.log(moviesList);
 
-    if (moviesList.data.length > 0) {
-      moviesList = moviesList.data
+    if (moviesList.length > 0) {
+      moviesList = moviesList
         .filter((m: Movie) => m)
         .map((m: Movie) => {
           const myVideo: IVideo = m as IVideo;
@@ -28,8 +28,8 @@ function resultsController($routeParams: ISearchFilters, moviesService: any, ser
   const updateVideosListWithSeries = (seriesList: any) => {
     console.log(seriesList);
 
-    if (seriesList.data.length > 0) {
-      seriesList = seriesList.data
+    if (seriesList.length > 0) {
+      seriesList = seriesList
         .filter((s: Serie) => s)
         .map((s: Serie) => {
           const myVideo: IVideo = s as unknown as IVideo;
@@ -46,7 +46,7 @@ function resultsController($routeParams: ISearchFilters, moviesService: any, ser
   const filters: Filters = $routeParams;
 
   if (!filters.type || filters.type === 'movies') {
-    $q(moviesService.getMovies(filters))
+    $q(moviesService.getMoviesPromiseFunction(filters))
       .then(updateVideosListWithMovies)
       .catch((e: any) => {
         console.error(e);
@@ -55,7 +55,7 @@ function resultsController($routeParams: ISearchFilters, moviesService: any, ser
   }
 
   if (!filters.type || filters.type === 'series') {
-    $q(seriesService.getSeries(filters))
+    $q(seriesService.getSeriesPromiseFunction(filters))
       .then(updateVideosListWithSeries)
       .catch((e: any) => {
         console.error(e);
@@ -66,7 +66,7 @@ function resultsController($routeParams: ISearchFilters, moviesService: any, ser
 
 appModule
   .component('mySearchResults', {
-    templateUrl: '/src/components/search_results/search_results.html',
+    templateUrl: '/src/components/searchResults/searchResults.html',
     controllerAs: 'searchResultsController',
     controller: ['$routeParams', 'moviesService', 'seriesService', '$q', '$scope', resultsController],
   });

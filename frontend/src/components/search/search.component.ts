@@ -24,6 +24,10 @@ appModule
         filters.genre = this.searchForm.genre;
         filters.releaseDate = this.searchForm.releaseDate;
         filters.rating = this.searchForm.rating;
+        if (this.searchForm.orderBy) {
+          filters.orderBy = this.searchForm.orderBy;
+          filters.orderType = this.searchForm.orderType ? this.searchForm.orderType : "asc";
+        }
         if (this.searchForm.type && this.searchForm.type.movies !== this.searchForm.type.series) {
           filters.type = this.searchForm.type.movies ? 'movies' : 'series';
         }

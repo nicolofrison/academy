@@ -1,49 +1,72 @@
 import appModule from '../../app.module';
 import Filters from "../../models/SearchFilters";
 import {Movie, Serie} from "../../lib/openapi";
-import Video from "../../models/Video";
+import IVideo from "../../models/Video";
 import ISearchFilters from "../../models/SearchFilters";
 
-function resultsController($routeParams: ISearchFilters, videosService: any, $q:any, $scope:any) {
-  const updateVideosList = (videosList: any) => {
-    if (videosList.data.length > 0) {
-      //  console.log(videosList);
-      videosList = videosList.data[0].concat(videosList.data[1]);
+function resultsController($routeParams: ISearchFilters, moviesService: any, seriesService: any, $q:any, $scope:any) {
+  this.videosList = [];
 
-      videosList = videosList
-        .filter((v: Movie | Serie | Video) => v)
-        .map((v: Movie | Serie | Video) => {
-          const myVideo: Video = v as Video;
-          // if the filed 'quality' is in v then v is a movie because serie not have the field quality
-          myVideo.type = 'quality' in v ? 'movie' : 'serie';
-          myVideo.href = myVideo.type === 'serie'
-            ? '/#!/seriedetails/' + v.id
-            : '/#!/moviedetails/' + v.id;
+  const updateVideosListWithMovies = (moviesList: any) => {
+    console.log(moviesList);
+
+    if (moviesList.data.length > 0) {
+      moviesList = moviesList.data
+        .filter((m: Movie) => m)
+        .map((m: Movie) => {
+          const myVideo: IVideo = m as IVideo;
+          myVideo.type = 'movie';
+          myVideo.href = '/#!/moviedetails/' + m.id;
+
           return myVideo;
       });
 
-      //  console.log('Videos list');
-      //  console.log(videosList);
+      this.videosList = this.videosList.concat(moviesList);
+    }
+  }
 
-      this.videosList = videosList;
-    } else {
-      this.videosList = [];
+  const updateVideosListWithSeries = (seriesList: any) => {
+    console.log(seriesList);
+
+    if (seriesList.data.length > 0) {
+      seriesList = seriesList.data
+        .filter((s: Serie) => s)
+        .map((s: Serie) => {
+          const myVideo: IVideo = s as unknown as IVideo;
+          myVideo.type = 'serie';
+          myVideo.href = '/#!/seriedetails/' + s.id;
+
+          return myVideo;
+        });
+
+      this.videosList = this.videosList.concat(seriesList);
     }
   }
 
   const filters: Filters = $routeParams;
 
-  $q(videosService.getVideos(filters))
-    .then(updateVideosList)
-    .catch((e: any) => {
-      console.error(e);
-      alert('There was an error during the request. Retry later!')
-    });
+  if (!filters.type || filters.type === 'movies') {
+    $q(moviesService.getMovies(filters))
+      .then(updateVideosListWithMovies)
+      .catch((e: any) => {
+        console.error(e);
+        alert('There was an error during the request of the movies. Retry later!')
+      });
+  }
+
+  if (!filters.type || filters.type === 'series') {
+    $q(seriesService.getSeries(filters))
+      .then(updateVideosListWithSeries)
+      .catch((e: any) => {
+        console.error(e);
+        alert('There was an error during the request of the series. Retry later!')
+      });
+  }
 }
 
 appModule
   .component('mySearchResults', {
     templateUrl: '/src/components/search_results/search_results.html',
     controllerAs: 'searchResultsController',
-    controller: ['$routeParams', 'videosService', '$q', '$scope', resultsController],
+    controller: ['$routeParams', 'moviesService', 'seriesService', '$q', '$scope', resultsController],
   });

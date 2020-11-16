@@ -3,9 +3,13 @@ export interface ISearchFilters {
   genre?: string,
   releaseDate?: string,
   rating?: number,
-  type?: 'movies' | 'series',
+  type?: 'movies' | 'series' | 'episode',
   orderBy?: 'creationDate' | 'likes' | 'ratings' | 'views',
   orderType?: 'asc' | 'desc',
+}
+
+export interface ISeriesFilters {
+  seriesId?: number
 }
 
 export default class SearchFilters implements ISearchFilters {
@@ -52,7 +56,6 @@ export default class SearchFilters implements ISearchFilters {
       this.fromUrlQuery(urlQuery);
     }
   }
-
 
   public toUrlQuery(questionMark: boolean = false): string {
     const queryArr: string[] = [];

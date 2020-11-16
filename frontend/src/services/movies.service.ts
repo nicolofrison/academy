@@ -6,15 +6,16 @@ appModule
   .service('moviesApi', MoviesApi)
   .service('moviesService', ['moviesApi', function(moviesApi: MoviesApi) {
     const getMoviesByFilters = async function(filters: ISearchFilters) {
-      let orderBy: string = filters.orderBy ? '[' : undefined;
-      if (orderBy) {
-        orderBy += filters.orderBy[0];
-        if (filters.orderBy[1]) {
-          orderBy += ',' + filters.orderBy[1];
+      let orderBy: 'creationDate' | 'likes' | 'ratings' | 'views' = undefined;
+      let orderType: 'asc' | 'desc' = undefined;
+      if (filters.orderBy) {
+        orderBy = filters.orderBy;
+        if (filters.orderType) {
+          orderType = filters.orderType;
         }
       }
-      
-      return (await moviesApi.getMovies(filters.name, filters.genre, filters.releaseDate, filters.rating, filters.orderBy, filters.orderType)).data;
+
+      return (await moviesApi.getMovies(filters.name, filters.genre, filters.releaseDate, filters.rating, orderBy, orderType)).data;
     }
     this.getMovies = getMoviesByFilters;
 

@@ -1,12 +1,14 @@
 import appModule from '../app.module';
-import {Favorite, FavoritesApi, Movie, Serie} from "../lib/openapi";
-import SearchFilters, {ISearchFilters} from "../models/SearchFilters";
+import {Favorite, FavoritesApi, FavoritesPostRequest, Movie, Serie} from "../lib/openapi";
+import {ISearchFilters} from "../models/SearchFilters";
 import IVideo from "../models/Video";
 
 appModule
   .service('favoritesApi', FavoritesApi)
   .service('favoritesService', ['favoritesApi', 'moviesService', 'seriesService', '$q', function(favoritesApi: FavoritesApi, moviesService: any, seriesService: any, $q: any) {
     const getFavoritesVideosByUserId = async (userId: number, filters: ISearchFilters = {}): Promise<IVideo[]> => {
+      console.log('Service:');
+      console.log(userId);
       const favorites: Favorite[] = (await favoritesApi.getFavorites(userId)).data;
       console.log(favorites);
 
@@ -50,6 +52,12 @@ appModule
     this.getFavoritesVideos = function (userId: number, filters: ISearchFilters) {
       return function (resolve: any, reject: any) {
         getFavoritesVideosByUserId(userId, filters).then(resolve).catch(reject);
+      }
+    }
+
+    this.addFavoriteVideoPromiseFunction = (favoritesPostRequest: FavoritesPostRequest) => {
+      return function (resolve: any, reject: any) {
+        favoritesApi.postFavorites(favoritesPostRequest).then(resolve).catch(reject);
       }
     }
   }]);

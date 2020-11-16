@@ -109,9 +109,25 @@ ALTER TABLE `Views` ADD CONSTRAINT `FKViewsUsersId` FOREIGN KEY (`userId`) REFER
 ALTER TABLE `Views` ADD CONSTRAINT `FKViewsEpisodesId` FOREIGN KEY (`episodesId`) REFERENCES `Episodes`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `Views` ADD CONSTRAINT `FKViewsMoviesId` FOREIGN KEY (`moviesId`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-CREATE VIEW `V_Episodes`  AS SELECT `D`.*, `E`.`seasonNumber`, `E`.`episodeNumber`, `E`.`quality`, COUNT(`L`.`id`) AS `likes`, COUNT(`V`.`id`) AS `views` FROM `Details` `D` INNER JOIN `Episodes` `E` ON `D`.`id` = `E`.`detailsId` INNER JOIN `Likes` `L` ON `E`.`id` = `L`.`episodesId` INNER JOIN `Views` `V` ON `E`.`id` = `V`.`episodesId`;
-CREATE VIEW `V_Movies`  AS SELECT `D`.*, `M`.`quality`, COUNT(`L`.`id`) AS `likes`, AVG(`R`.`rating`) AS `rating`, COUNT(`V`.`id`) AS `views` FROM `Details` `D` INNER JOIN `Movies` `M` ON `D`.`id` = `M`.`detailsId` INNER JOIN `Likes` `L` ON `M`.`id` = `L`.`episodesId` INNER JOIN `Reviews` `R` ON `M`.`id` = `R`.`moviesId` INNER JOIN `Views` `V` ON `M`.`id` = `V`.`moviesId`;
-CREATE VIEW `V_Series`  AS SELECT `D`.*, MAX(DISTINCT `E`.`seasonNumber`) AS `seasonsNumber`, COUNT(`L`.`id`) AS `likes`, AVG(`R`.`rating`) AS `rating` FROM `Details` `D` INNER JOIN `Series` `S` ON `D`.`id` = `S`.`detailsId` INNER JOIN `Episodes` `E` ON `S`.`id` = `E`.`seriesId` INNER JOIN `Likes` `L` ON `S`.`id` = `L`.`seriesId` INNER JOIN `Reviews` `R` ON `S`.`id` = `R`.`seriesId`;
+CREATE VIEW `V_Episodes` AS SELECT `D`.*,
+        `E`.`seasonNumber`, `E`.`episodeNumber`, `E`.`quality`,
+        (SELECT COUNT(*) FROM Likes L WHERE E.id = L.moviesId) AS `likes`,
+        (SELECT COUNT(*) FROM Views V WHERE E.id = V.moviesId) AS `views`
+    FROM `Details` `D` INNER JOIN `Episodes` `E` ON `D`.`id` = `E`.`detailsId`;
+
+CREATE VIEW `V_Movies` AS SELECT `D`.*,
+        `M`.`quality`,
+        (SELECT COUNT(*) FROM Likes L WHERE M.id = L.moviesId) AS `likes`,
+        (SELECT AVG(rating) FROM Reviews R WHERE M.id = R.moviesId) AS `rating`,
+        (SELECT COUNT(*) FROM Views V WHERE M.id = V.moviesId) AS `views`
+    FROM `Details` `D` INNER JOIN `Movies` `M` ON `D`.`id` = `M`.`detailsId`;
+
+CREATE VIEW `V_Series`  AS SELECT `D`.*,
+        (SELECT MAX(DISTINCT `E`.`seasonNumber`) FROM Episodes E WHERE S.id = E.seriesId) AS `seasonsNumber`,
+        (SELECT COUNT(*) FROM Likes L WHERE S.id = L.seriesId) AS `likes`,
+        (SELECT AVG(rating) FROM Reviews R WHERE S.id = R.seriesId) AS `rating`
+    FROM `Details` `D`
+        INNER JOIN `Series` `S` ON `D`.`id` = `S`.`detailsId`;
 
 SET FOREIGN_KEY_CHECKS = 1;
 

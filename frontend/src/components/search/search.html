@@ -1,0 +1,42 @@
+<div class="container col-md-3">
+    <div class="card card-container">
+        <h2 id="h2SearchShows">Search shows</h2>
+        <form class="form-search" ng-alias="searchForm as searchController.searchForm" ng-submit="searchController.search()">
+            <input type="text" id="searchName" class="form-control" placeholder="Name" ng-model="searchForm.name">
+            <label for="genres">Choose a genre:</label>
+            <select name="searchGenres" id="genres" ng-model="searchForm.genre">
+                <option value="all">All</option>
+                <option value="adventure">Adventure</option>
+                <option value="action">Action</option>
+                <option value="comedy">Comedy</option>
+                <option value="romance">Romance</option>
+                <option value="thriller">Thriller</option>
+                <option value="war">War</option>
+                <option value="musical">Musical</option>
+            </select>
+            <input type="number" id="searchYear" class="form-control" placeholder="Publishing Year" min="1900" max="2020" ng-model="searchForm.releaseDate">
+            <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5" ng-model="searchForm.rating" />
+                <label for="star5" title="5">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" ng-model="searchForm.rating" />
+                <label for="star4" title="4">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" ng-model="searchForm.rating" />
+                <label for="star3" title="3">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" ng-model="searchForm.rating" />
+                <label for="star2" title="2">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" ng-model="searchForm.rating" />
+                <label for="star1" title="1">1 star</label>
+            </div>
+            <br><br>
+            <div id="searchMoviesShows" class="checkbox">
+                <label>
+                    <input type="checkbox" value="searchMovies" name="searchMovies" ng-model="searchForm.type.movies"> movies
+                </label>
+                <label>
+                    <input type="checkbox" value="searchShows" name="searchSeries" ng-model="searchForm.type.series"> series
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Search</button>
+        </form>
+    </div>
+</div>

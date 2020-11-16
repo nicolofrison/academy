@@ -1,0 +1,23 @@
+{
+   "compilerOptions": {
+      "lib": [
+         "es5",
+         "es6"
+      ],
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "paths": {
+         "@services/*": ["./src/services/*"],
+         "@repositories/*": ["./src/repositories/*"],
+         "@models/*": ["./src/models/openapi/*"],
+         "@controllers/*": ["./src/controllers/*"]
+      },
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "sourceMap": true,
+      "allowSyntheticDefaultImports": true
+   }
+}

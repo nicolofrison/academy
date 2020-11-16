@@ -5,10 +5,9 @@ import {ISearchFilters} from "../../models/SearchFilters";
 
 function rowController(episodesService: any,seriesService: any,moviesService: any, $q:any, $scope:any) {
   let type;
+  this.videosList = [];
   this.$onInit = function () {
-    type = this.typeOfService;
-    
-    this.videosList = [];
+    type = this.typeOfService;    
     const s: ISearchFilters={};
     s.orderBy=this.orderBy;
     s.orderType=this.orderType;

@@ -13,7 +13,7 @@ appModule
           orderBy += ',' + filters.orderBy[1];
         }
       }
-
+      
       return (await moviesApi.getMovies(filters.name, filters.genre, filters.releaseDate, filters.rating, filters.orderBy, filters.orderType)).data;
     }
     this.getMovies = getMoviesByFilters;

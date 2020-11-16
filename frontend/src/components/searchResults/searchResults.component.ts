@@ -59,7 +59,7 @@ function resultsController($routeParams: ISearchFilters, moviesService: any, ser
       .then(updateVideosListWithSeries)
       .catch((e: any) => {
         console.error(e);
-        alert('There was an error during the request of the series. Retry later!')
+        alert('There was an error during the request of the series. Retry later!');
       });
   }
 }

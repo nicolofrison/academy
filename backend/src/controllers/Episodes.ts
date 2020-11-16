@@ -4,12 +4,35 @@ const db = require('../config/dbConfig');
 const episodesController = (app) => {
   app.get('/Episodes', async (req, res) => {
     try {
-      const selectAll = await db.executeQuery('SELECT * FROM Episodes', []);
-      res.status(200);
-      res.send(selectAll);
-    } catch (e) {
-      res.status(500);
-      res.send('server error');
+      
+      const selectAll = await db.executeQuery('SELECT * FROM V_Episodes ');
+      console.log(selectAll);
+    
+      const episodesArray = selectAll.map((m: any) => {
+        // conversione da dati di db al tipo Movie
+         return {
+           id: m.id,
+          title: m.title,
+          description: m.description,
+          genre: m.genre,
+          duration: m.duration,
+          actors: m.actors,
+          releaseDate: m.releaseDate,
+          creationDate: m.creationDate,
+          seasonNumber: m.seasonNumber,
+          episodeNumber: m.episodeNumber,
+          quality: m.quality,
+          likes: m.likes,
+          views: m.views  
+        }
+
+      })     
+       
+        res.status(200);
+        res.send({data: episodesArray})  
+      } catch (e) {
+        res.status(500);
+        res.send('server error');
     }
   });
 

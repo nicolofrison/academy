@@ -4,10 +4,80 @@ const db = require('../config/dbConfig');
 const moviesController = (app) => {
   app.get('/movies', async (req, res) => {
     try {
-      const selectAll = await db.executeQuery('SELECT * FROM Movies', []);
+      //console.log(req.query);
+      
+      const where = {whereClause: [], whereValue: []};
+      Object.entries(req.query)
+      .forEach((pair:any) => {
+        //console.log(pair);
+        switch (pair[0]) {
+          case 'filterByName':
+            where.whereClause.push('title LIKE ?');
+            where.whereValue.push(pair[1]);
+            break;
+          case 'filterByGenre':
+            where.whereClause.push('genre=?');
+            where.whereValue.push(pair[1]);
+            break;
+          case 'filterByReleaseDate':
+            where.whereClause.push('releaseDate=?');
+            where.whereValue.push(pair[1]);
+            break;
+          case 'filterByRating':
+            where.whereClause.push('rating=?');
+            where.whereValue.push(pair[1]);
+            break;
+        }
+      })
+
+      const order = {orderClause:[], orderValue:[]};
+      Object.entries(req.query)
+        .forEach((pair:any) => {
+          switch(pair[0]){
+            case 'orderBy':
+              order.orderClause.push('?');
+              order.orderValue.push(pair[1]);
+              break;
+            case 'orderType':
+              order.orderClause.push('?');
+              order.orderValue.push(pair[1]);
+              break;
+          }
+        });
+      
+      //console.log(where);
+      //console.log(order);
+
+      const orderBy: string = order.orderClause.length > 0 ? ' ORDER BY ?' + (order.orderClause.length > 1 ? ' ?' :'') : '';
+      const whe: string = where.whereClause.length > 0 ? ' WHERE ?' +(where.whereClause.length > 1 ? ' ?' :''): '';
+          
+      const selectAll = await db.executeQuery('SELECT * FROM V_Movies ' + whe + orderBy , where.whereValue.concat(order.orderValue));
+      console.log(selectAll);
+    
+      const moviesArray = selectAll.map((m: any) => {
+        // conversione da dati di db al tipo Movie
+         return {
+           id: m.id,
+          title: m.title,
+          description: m.description,
+          genre: m.genre,
+          duration: m.duration,
+          actors: m.actors,
+          releaseDate: m.releaseDate,
+          creationDate: m.creationDate,
+          quality: m.quality,
+          likes: m.likes,
+          rating: m.rating,
+          views: m.views}
+
+      })
+      
       res.status(200);
-      res.send(selectAll);
+      //res.send(selectAll);
+      res.send({data: moviesArray});
     } catch (e) {
+
+      console.log(e);
       res.status(500);
       res.send('server error');
     }

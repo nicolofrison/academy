@@ -12,15 +12,15 @@
     </form><br><br>
 
     <h4>Last TV series added</h4>
-    <my-row type-of-service="seriesCtrl.type"></my-row>
+    <my-row type-of-service="seriesCtrl.type" order-by="seriesCtrl.lastAddedOrderByCreationDate" order-type="seriesCtrl.OrderType"></my-row>
 
     <h4>Most popular</h4>
-    <my-row type-of-service="seriesCtrl.type"></my-row>
+    <my-row type-of-service="seriesCtrl.type" order-by="seriesCtrl.mostPopularOrderByViews" order-type="seriesCtrl.OrderType"></my-row>
 
     <h4>TV series for you</h4>
-    <my-row type-of-service="seriesCtrl.type"></my-row>
+    <my-row type-of-service="seriesCtrl.type" order-by="seriesCtrl.recommendedOrderByRatings" order-type="seriesCtrl.OrderType"></my-row>
 
     <h4>Most liked</h4>
-    <my-row type-of-service="seriesCtrl.type"></my-row>
+    <my-row type-of-service="seriesCtrl.type" order-by="seriesCtrl.mostLikedOrderByLikes" order-type="seriesCtrl.OrderType"></my-row>
 
 </div>

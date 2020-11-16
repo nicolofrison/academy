@@ -12,15 +12,15 @@
     </form><br><br>
 
     <h4>Last movies added</h4>
-    <my-row type-of-service="moviesCtrl.type"></my-row>
+    <my-row type-of-service="moviesCtrl.type" order-by="moviesCtrl.lastAddedOrderByCreationDate" order-type="moviesCtrl.OrderType"></my-row>
     
     <h4>Most popular</h4>
-    <my-row type-of-service="moviesCtrl.type"></my-row>
+    <my-row type-of-service="moviesCtrl.type" order-by="moviesCtrl.mostPopularOrderByViews" order-type="moviesCtrl.OrderType"></my-row>
 
     <h4>Movies for you</h4>
-    <my-row type-of-service="moviesCtrl.type"></my-row>
+    <my-row type-of-service="moviesCtrl.type" order-by="moviesCtrl.recommendedOrderByRatings" order-type="moviesCtrl.OrderType"></my-row>
     
     <h4>Most liked</h4>
-    <my-row type-of-service="moviesCtrl.type"></my-row>
+    <my-row type-of-service="moviesCtrl.type" order-by="moviesCtrl.mostLikedOrderByLikes" order-type="moviesCtrl.OrderType"></my-row>
 
 </div>

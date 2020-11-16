@@ -1,4 +1,4 @@
-export default interface Video {
+export default interface IVideo {
   id: number,
   title: string,
   description: string,
@@ -8,6 +8,6 @@ export default interface Video {
   releaseDate: string,
   creationDate: string,
   quality?: string,
-  type: 'movie' | 'serie',
+  type: 'movie' | 'serie' | 'episode',
   href: string
 }

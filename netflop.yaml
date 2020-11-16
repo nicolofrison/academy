@@ -46,6 +46,26 @@ paths:
       tags:
         - Favorites
       description: Add a video to favorites
+    get:
+      summary: ''
+      operationId: get-favorites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Favorite'
+      description: Return a list of favorites
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: usersId
+      tags:
+        - Favorites
   '/favorites/{favoritesId}':
     parameters:
       - schema:
@@ -149,6 +169,22 @@ paths:
       parameters:
         - schema:
             type: string
+          in: query
+          name: filterByName
+        - schema:
+            type: string
+          in: query
+          name: filterByGenre
+        - schema:
+            type: string
+          in: query
+          name: filterByReleaseDate
+        - schema:
+            type: number
+          in: query
+          name: filterByRating
+        - schema:
+            type: string
             enum:
               - creationDate
               - likes
@@ -156,12 +192,34 @@ paths:
               - views
           in: query
           name: orderBy
-          description: ''
         - schema:
             type: string
+            enum:
+              - asc
+              - desc
           in: query
-          name: filterByGenre
+          name: orderType
       description: Return a list of movies
+  '/movies/{moviesId}':
+    parameters:
+      - schema:
+          type: string
+        name: moviesId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Movies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+      operationId: get-movie-by-Id
+      description: Return the movie info
   /register:
     post:
       summary: ''
@@ -238,6 +296,22 @@ paths:
       parameters:
         - schema:
             type: string
+          in: query
+          name: filterByName
+        - schema:
+            type: string
+          in: query
+          name: filterByGenre
+        - schema:
+            type: string
+          in: query
+          name: filterByReleaseDate
+        - schema:
+            type: number
+          in: query
+          name: filterByRating
+        - schema:
+            type: string
             enum:
               - creationDate
               - likes
@@ -247,9 +321,32 @@ paths:
           name: orderBy
         - schema:
             type: string
+            enum:
+              - asc
+              - desc
           in: query
-          name: filterByGenre
+          name: orderType
       description: Return a list of series
+  '/series/{seriesId}':
+    parameters:
+      - schema:
+          type: string
+        name: seriesId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Series
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Serie'
+      operationId: get-serie-by-Id
+      description: Return the serie info
   '/users/{userId}':
     parameters:
       - schema:
@@ -290,52 +387,6 @@ paths:
                 $ref: '#/components/schemas/UsersFavoritesGetResponse'
       operationId: get-users-userId-favorites
       description: Return a list of user favorites videos
-  /videos:
-    get:
-      summary: Your GET endpoint
-      tags:
-        - Videos
-      operationId: get-videos
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VideosGetResponse'
-      description: Return a list of movies and series
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: filterByName
-        - schema:
-            type: string
-          in: query
-          name: filterByGenre
-        - schema:
-            type: string
-          in: query
-          name: filterByReleaseDate
-        - schema:
-            type: number
-          in: query
-          name: filterByRating
-        - schema:
-            type: string
-            enum:
-              - movies
-              - series
-          in: query
-          name: filterByType
-        - schema:
-            type: string
-            pattern: "^\\[\\w+(,\\w+)?\\]$"
-            example: '[lastAdded,desc]'
-          in: query
-          name: orderBy
 components:
   schemas:
     Episode:
@@ -624,12 +675,3 @@ components:
         - newsletter
       x-tags:
         - Users
-    VideosGetResponse:
-      title: VideosGetResponse
-      type: array
-      items:
-        oneOf:
-          - $ref: '#/components/schemas/Movie'
-          - $ref: '#/components/schemas/Serie'
-      x-tags:
-        - Videos

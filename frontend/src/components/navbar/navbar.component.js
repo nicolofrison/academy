@@ -1,8 +1,9 @@
 import appModule from '../../app.module';
 
-function navbarController(storageService, $location) {
+function navbarController(sessionService, $location) {
   this.logout = () => {
-    storageService.save('loggedIn', false);
+    sessionService.save('loggedIn', false);
+    sessionService.save('userId', undefined);
     $location.path('/home');
   };
 }
@@ -13,5 +14,5 @@ appModule
     bindings: {
       loggedIn: '<',
     },
-    controller: ['storageService', '$location', navbarController],
+    controller: ['sessionService', '$location', navbarController],
   });

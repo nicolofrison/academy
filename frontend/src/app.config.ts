@@ -5,10 +5,10 @@ import './directives/ngAlias.directive'
 
 //  services
 import './services/episodes.service';
-import './services/videos.service';
+import './services/favorites.service';
+import './services/movies.service';
+import './services/series.service';
 import './services/session.service';
-import { videosService } from './services/videos';
-import {EpisodesApi} from "./lib/openapi/api";
 
 //  components
 import './components/navbar/navbar.component';
@@ -21,10 +21,8 @@ import './components/movies/movies.component';
 import './components/movie_details/movie_details.component';
 import './components/series/series.component';
 import './components/serie_details/serie_details.component';
-import './components/search_results/search_results.component';
-
-//  variables
-const apiBaseUrl: string = 'http://localhost:3100';
+import './components/searchResults/searchResults.component';
+import './components/favorites/favorites.component';
 
 appModule
   .config(['$routeProvider', function config($routeProvider: any) {
@@ -59,16 +57,11 @@ appModule
       .when('/searchresults', {
         template: '<my-search-results></my-search-results>',
       })
+      .when('/favorites', {
+        template: '<my-favorites></my-favorites>',
+      })
       .otherwise('/home');
   }])
-  .controller('appCtrl', ['storageService', '$scope', 'episodesApi', async (storageService: any, $scope: any, episodesApi: EpisodesApi) => {
-    /*
-    try {
-      console.log(await episodesApi.getEpisodes());
-    } catch (e) {
-      console.log('Get episodes error';
-    }
-    */
-    $scope.isLogged = () => storageService.get('loggedIn') === 'true';
-    videosService.setBaseUrl(apiBaseUrl);
+  .controller('appCtrl', ['sessionService', '$scope', async (sessionService: any, $scope: any) => {
+    $scope.isLogged = () => sessionService.get('loggedIn') === 'true';
   }]);

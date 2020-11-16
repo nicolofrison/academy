@@ -8,6 +8,6 @@ export default interface IVideo {
   releaseDate: string,
   creationDate: string,
   quality?: string,
-  type: 'movie' | 'serie',
+  type: 'movie' | 'serie' | 'episode',
   href: string
 }

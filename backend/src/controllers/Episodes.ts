@@ -29,7 +29,7 @@ const episodesController = (app) => {
       })     
        
         res.status(200);
-        res.send({data: episodesArray})  
+        res.send(episodesArray)  
       } catch (e) {
         res.status(500);
         res.send('server error');

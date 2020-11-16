@@ -52,7 +52,7 @@ const seriesController = (app) => {
       const selectAll = await db.executeQuery('SELECT * FROM V_Series ' + whe + orderBy , where.whereValue.concat(order.orderValue));
       console.log(selectAll);
     
-      const episodesArray = selectAll.map((m: any) => {
+      const seriesArray = selectAll.map((m: any) => {
         // conversione da dati di db al tipo Movie
          return {
            id: m.id,
@@ -72,7 +72,7 @@ const seriesController = (app) => {
       })
       
       res.status(200);
-      res.send({data: episodesArray})
+      res.send(seriesArray)
     } catch (e) {
       res.status(500);
       res.send('server error');

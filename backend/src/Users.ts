@@ -2,7 +2,7 @@ import RowDataPacket from 'mysql/lib/protocol/packets/RowDataPacket';
 import { QueryError } from 'mysql/lib/protocol/sequences/Query';
 import { isArray } from 'util';
 import express = require('express');
-import {OkPacket} from "~mysql/lib/protocol/packets/index";
+import {OkPacket} from "mysql/lib/protocol/packets/index";
 
 const app: express.Application = express();
 const mysql = require('mysql');

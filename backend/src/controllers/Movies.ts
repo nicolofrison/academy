@@ -74,7 +74,7 @@ const moviesController = (app) => {
       
       res.status(200);
       //res.send(selectAll);
-      res.send({data: moviesArray});
+      res.send(moviesArray);
     } catch (e) {
 
       console.log(e);

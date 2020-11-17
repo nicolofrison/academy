@@ -1,7 +1,7 @@
 export interface ISearchFilters {
   name?: string,
   genre?: string,
-  releaseDate?: string,
+  releaseDate?: number,
   rating?: number,
   type?: 'movies' | 'series' | 'episode',
   orderBy?: 'creationDate' | 'likes' | 'ratings' | 'views',
@@ -15,7 +15,7 @@ export interface ISeriesFilters {
 export default class SearchFilters implements ISearchFilters {
   name?: string;
   genre?: string;
-  releaseDate?: string;
+  releaseDate?: number;
   rating?: number;
   type?: 'movies' | 'series';
   orderBy?: 'creationDate' | 'likes' | 'ratings' | 'views';

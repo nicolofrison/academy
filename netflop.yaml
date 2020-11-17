@@ -176,7 +176,7 @@ paths:
           in: query
           name: filterByGenre
         - schema:
-            type: string
+            type: number
           in: query
           name: filterByReleaseDate
         - schema:
@@ -303,7 +303,7 @@ paths:
           in: query
           name: filterByGenre
         - schema:
-            type: string
+            type: number
           in: query
           name: filterByReleaseDate
         - schema:

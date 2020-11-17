@@ -1,29 +1,64 @@
+import { Episode } from '@models/Episode';
+
 const { body, validationResult } = require('express-validator');
 const db = require('../config/dbConfig');
 
 const episodesController = (app) => {
-  app.get('/Episodes', async (req, res) => {
+  app.get('/episodes', async (req, res) => {
     try {
-      const selectAll = await db.executeQuery('SELECT * FROM V_Episodes ');
+      const where = { whereClause: [], whereValue: [] };
+      Object.entries(req.query)
+        .forEach((pair:any) => {
+          // console.log(pair);
+          switch (pair[0]) {
+            case 'filterByName':
+              where.whereClause.push('title LIKE ?');
+              where.whereValue.push(pair[1]);
+              break;
+            case 'filterByGenre':
+              where.whereClause.push('genre=?');
+              where.whereValue.push(pair[1]);
+              break;
+            case 'filterByReleaseDate':
+              where.whereClause.push('YEAR(releaseDate)=?');
+              where.whereValue.push(pair[1]);
+              break;
+            case 'filterByRating':
+              where.whereClause.push('rating=?');
+              where.whereValue.push(pair[1]);
+              break;
+            case 'seriesId':
+              where.whereClause.push('seriesId=?');
+              where.whereValue.push(pair[1]);
+              break;
+            default:
+          }
+        });
+
+      //  console.log(where);
+
+      const whe: string = where.whereClause.length > 0 ? `WHERE ${where.whereClause.join(',')}` : '';
+      //  console.log(whe);
+
+      const selectAll = await db.executeQuery(`SELECT * FROM V_Episodes ${whe} ORDER BY episodeNumber`, where.whereValue);
       //  console.log(selectAll);
 
-      const episodesArray = selectAll.map((m: any) =>
-        // conversione da dati di db al tipo Movie
-        ({
-          id: m.id,
-          title: m.title,
-          description: m.description,
-          genre: m.genre,
-          duration: m.duration,
-          actors: m.actors,
-          releaseDate: m.releaseDate,
-          creationDate: m.creationDate,
-          seasonNumber: m.seasonNumber,
-          episodeNumber: m.episodeNumber,
-          quality: m.quality,
-          likes: m.likes,
-          views: m.views,
-        }));
+      // refactor data from db episodes in api episode
+      const episodesArray: Episode[] = selectAll.map((m: any) => ({
+        id: m.id,
+        title: m.title,
+        description: m.description,
+        genre: m.genre,
+        duration: m.duration,
+        actors: m.actors,
+        releaseDate: m.releaseDate,
+        creationDate: m.creationDate,
+        seasonNumber: m.seasonNumber,
+        episodeNumber: m.episodeNumber,
+        quality: m.quality,
+        likes: m.likes,
+        views: m.views,
+      }));
 
       res.status(200);
       res.send(episodesArray);

@@ -111,7 +111,7 @@ ALTER TABLE `Views` ADD CONSTRAINT `FKViewsUsersId` FOREIGN KEY (`usersId`) REFE
 ALTER TABLE `Views` ADD CONSTRAINT `FKViewsEpisodesId` FOREIGN KEY (`episodesId`) REFERENCES `Episodes`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `Views` ADD CONSTRAINT `FKViewsMoviesId` FOREIGN KEY (`moviesId`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-CREATE VIEW `V_Episodes` AS SELECT `E`.id, `E`.`seasonNumber`, `E`.`episodeNumber`, `E`.`quality`,
+CREATE VIEW `V_Episodes` AS SELECT `E`.id, `E`.`seasonNumber`, `E`.`episodeNumber`, `E`.`quality`, E.seriesId,
         D.title, D.description, D.genre, D.duration, D.actors, D.releaseDate, D.creationDate,
         (SELECT COUNT(*) FROM Likes L WHERE E.id = L.moviesId) AS `likes`,
         (SELECT COUNT(*) FROM Views V WHERE E.id = V.moviesId) AS `views`

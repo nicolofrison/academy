@@ -8,7 +8,8 @@ export interface ISearchFilters {
   orderType?: 'asc' | 'desc',
 }
 
-export interface ISeriesFilters {
+export interface ISeriesFilters extends ISearchFilters {
+  seasonNumber?: number;
   seriesId?: number
 }
 
@@ -38,6 +39,7 @@ export default class SearchFilters implements ISearchFilters {
         case 'releaseDate':
         case 'rating':
         case 'type':
+        case 'seriesId':
         case 'orderBy':
         case 'orderType':
           eval('this.' + set.key + '=' + set.value);

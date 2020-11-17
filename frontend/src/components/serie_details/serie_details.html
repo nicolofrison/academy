@@ -32,10 +32,8 @@
 
 <form class="form-inline">
     <label >Choose a season:  </label>
-    <select  id="inlineFormCustomSelectPref">
-      <option value="1">Season 1</option>
-      <option value="2">Season 2</option>
-      <option value="3">Season 3</option>
+    <select  id="inlineFormCustomSelectPref" ng-options="('Season ' + seasonNumber) for seasonNumber in $ctrl.seasons track by seasonNumber"
+             ng-model="$ctrl.selectedSeason">
     </select>
 </form>
 
@@ -43,7 +41,7 @@
     <div class="row">
         <p>Episodes</p><br><br>
     </div>
-    <my-row type-of-service="$ctrl.type"></my-row>
+    <my-row series-id="$ctrl.seriesId" season-number="$ctrl.selectedSeason" type-of-service="$ctrl.type"></my-row>
 </div>
 <br></br>
 

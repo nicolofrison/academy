@@ -48,10 +48,13 @@ appModule
       .when('/profile', {
         template: '<my-profile></my-profile>',
       })
-      .when('/moviedetails', {
+      .when('/episodedetails/:id', {
+        template: '<my-episode-details></my-episode-details>',
+      })
+      .when('/moviedetails/:id', {
         template: '<my-movie-details></my-movie-details>',
       })
-      .when('/seriedetails', {
+      .when('/seriedetails/:id', {
         template: '<my-serie-details></my-serie-details>',
       })
       .when('/searchresults', {

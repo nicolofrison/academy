@@ -1,12 +1,14 @@
 import appModule from '../app.module';
-import {Favorite, FavoritesApi, Movie, Serie} from "../lib/openapi";
-import SearchFilters, {ISearchFilters} from "../models/SearchFilters";
+import {Favorite, FavoritesApi, FavoritesPostRequest, Movie, Serie} from "../lib/openapi";
+import {ISearchFilters} from "../models/SearchFilters";
 import IVideo from "../models/Video";
 
 appModule
   .service('favoritesApi', FavoritesApi)
   .service('favoritesService', ['favoritesApi', 'moviesService', 'seriesService', '$q', function(favoritesApi: FavoritesApi, moviesService: any, seriesService: any, $q: any) {
     const getFavoritesVideosByUserId = async (userId: number, filters: ISearchFilters = {}): Promise<IVideo[]> => {
+      console.log('Service:');
+      console.log(userId);
       const favorites: Favorite[] = (await favoritesApi.getFavorites(userId)).data;
       console.log(favorites);
 
@@ -21,7 +23,9 @@ appModule
           myVideo.type = 'movie';
           myVideo.href = '/#!/moviedetails/' + m.id;
 
-          if (favorites.find((f) => f.moviesId === myVideo.id)) {
+          const favorite = favorites.find((f) => f.moviesId === myVideo.id);
+          if (favorite) {
+            myVideo.favoritesId = favorite.id;
             videos.push(myVideo);
           }
         });
@@ -37,7 +41,9 @@ appModule
           myVideo.type = 'serie';
           myVideo.href = '/#!/seriedetails/' + s.id;
 
-          if (favorites.find((f) => f.seriesId === myVideo.id)) {
+          const favorite = favorites.find((f) => f.seriesId === myVideo.id);
+          if (favorite) {
+            myVideo.favoritesId = favorite.id;
             videos.push(myVideo);
           }
         });
@@ -50,6 +56,18 @@ appModule
     this.getFavoritesVideos = function (userId: number, filters: ISearchFilters) {
       return function (resolve: any, reject: any) {
         getFavoritesVideosByUserId(userId, filters).then(resolve).catch(reject);
+      }
+    }
+
+    this.addFavoriteVideoPromiseFunction = (favoritesPostRequest: FavoritesPostRequest) => {
+      return function (resolve: any, reject: any) {
+        favoritesApi.postFavorites(favoritesPostRequest).then(resolve).catch(reject);
+      }
+    }
+
+    this.rmFavoriteVideoPromiseFunction = (favoriteId: number) => {
+      return function (resolve: any, reject: any) {
+        favoritesApi.deleteFavoritesFavoriteId(favoriteId).then(resolve).catch(reject);
       }
     }
   }]);

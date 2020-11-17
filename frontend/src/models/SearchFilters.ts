@@ -1,21 +1,22 @@
 export interface ISearchFilters {
   name?: string,
   genre?: string,
-  releaseDate?: string,
+  releaseDate?: number,
   rating?: number,
   type?: 'movies' | 'series' | 'episode',
   orderBy?: 'creationDate' | 'likes' | 'ratings' | 'views',
   orderType?: 'asc' | 'desc',
 }
 
-export interface ISeriesFilters {
+export interface ISeriesFilters extends ISearchFilters {
+  seasonNumber?: number;
   seriesId?: number
 }
 
 export default class SearchFilters implements ISearchFilters {
   name?: string;
   genre?: string;
-  releaseDate?: string;
+  releaseDate?: number;
   rating?: number;
   type?: 'movies' | 'series';
   orderBy?: 'creationDate' | 'likes' | 'ratings' | 'views';
@@ -38,6 +39,7 @@ export default class SearchFilters implements ISearchFilters {
         case 'releaseDate':
         case 'rating':
         case 'type':
+        case 'seriesId':
         case 'orderBy':
         case 'orderType':
           eval('this.' + set.key + '=' + set.value);

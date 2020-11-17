@@ -10,12 +10,13 @@ import reviewsController from '@controllers/Reviews';
 import seriesController from '@controllers/Series';
 
 const express = require('express');
+const cors = require('cors');
 
 require('dotenv').config();
-
 const app: Express.Application = express();
 const port = process.env.APP_PORT;
 app.use(express.json());
+app.use(cors());
 
 //  Controllers
 detailsController(app);

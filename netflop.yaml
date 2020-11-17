@@ -69,7 +69,7 @@ paths:
   '/favorites/{favoritesId}':
     parameters:
       - schema:
-          type: string
+          type: number
         name: favoritesId
         in: path
         required: true
@@ -176,7 +176,7 @@ paths:
           in: query
           name: filterByGenre
         - schema:
-            type: string
+            type: number
           in: query
           name: filterByReleaseDate
         - schema:
@@ -303,7 +303,7 @@ paths:
           in: query
           name: filterByGenre
         - schema:
-            type: string
+            type: number
           in: query
           name: filterByReleaseDate
         - schema:

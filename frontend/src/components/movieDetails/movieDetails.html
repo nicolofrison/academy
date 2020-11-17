@@ -1,30 +1,20 @@
-<h1>FERIDE</h1>
+<h1>{{$ctrl.movie.title}}</h1>
 
+<span class="badge badge-pill badge-info">{{$ctrl.movie.releaseDate | date : 'yyyy'}}</span>
+<span class="badge badge-pill badge-info">{{$ctrl.movie.duration}}m</span>
+<span class="badge badge-pill badge-dark">{{$ctrl.movie.genre}}</span>
+<br>
+<em class="fas fa-star checked" ng-repeat="i in $ctrl.posRating track by $index"></em>
+<em class="far fa-star" ng-repeat="i in $ctrl.negRating track by $index"></em>
+{{$ctrl.movie.ratingsNumber}}
+<i class="fas fa-eye"></i>
+{{$ctrl.movie.views}}
+<i class="fas fa-heart"></i>
+{{$ctrl.movie.views}}
 
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-<span class="badge badge-pill badge-info">2018</span>
-<span class="badge badge-pill badge-info">1.56H</span>
-<span class="badge badge-pill badge-dark">Avventura</span>
+<p>{{$ctrl.movie.description}}</p>
 
-<p>Dominic "Dom" Cobb è un "estrattore", un professionista che si occupa di estrarre segreti
-    dalle menti delle persone mentre queste dormono, infiltrandosi nei loro sogni tramite un apparecchio
-     a orologeria in suo possesso, che permette a un gruppo di persone di partecipare a un "sogno condiviso".
-     Cobb e la sua squadra normalmente si servono di trucchi e inganni per carpire le informazioni
-     della vittima, la quale crede di essere nella realtà e non sospetta nulla.</p>
-
-<h6>CAST:
-    A.J. Buckley
-    A.J. Cook
-    Aamir Khan
-    Aamir Ali Malik
-    Aaron Eckhart
-    Aaron Kwock
-    Aaron Stanford
-    Aaron Taylor-John</h6>
+<h6>CAST: {{$ctrl.movie.actors}}</h6>
 
 <a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Back</a>
 <a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Watch</a>

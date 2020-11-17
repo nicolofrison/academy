@@ -19,9 +19,19 @@ appModule
     }
     this.getMovies = getMoviesByFilters;
 
+    const getMovieById = async function(movieId: number) {
+      return (await moviesApi.getMovieById(movieId)).data;
+    }
+
     this.getMoviesPromiseFunction = (filters: ISearchFilters) => {
       return function (resolve: any, reject: any) {
         getMoviesByFilters(filters).then(resolve).catch(reject);
+      }
+    }
+
+    this.getMovieByIdPromiseFunction = (id: number) => {
+      return function (resolve: any, reject: any) {
+        getMovieById(id).then(resolve).catch(reject);
       }
     }
   }]);

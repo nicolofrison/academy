@@ -18,7 +18,7 @@ import './components/signUp/signUp.component';
 import './components/profile/profile.component';
 import './components/home/home.component';
 import './components/movies/movies.component';
-import './components/movie_details/movie_details.component';
+import './components/movieDetails/movieDetails.component';
 import './components/series/series.component';
 import './components/serie_details/serie_details.component';
 import './components/searchResults/searchResults.component';

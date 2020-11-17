@@ -4,7 +4,7 @@ info:
   version: '1.0'
   description: Netflop apis
 servers:
-  - url: 'http://localhost:3100'
+  - url: 'http://localhost:3000'
 paths:
   /episodes:
     get:
@@ -203,7 +203,7 @@ paths:
   '/movies/{moviesId}':
     parameters:
       - schema:
-          type: string
+          type: number
         name: moviesId
         in: path
         required: true
@@ -330,7 +330,7 @@ paths:
   '/series/{seriesId}':
     parameters:
       - schema:
-          type: string
+          type: number
         name: seriesId
         in: path
         required: true
@@ -518,6 +518,12 @@ components:
           type: string
         quality:
           type: string
+        rating:
+          type: number
+        views:
+          type: number
+        likes:
+          type: number
       x-tags:
         - Movies
       required:

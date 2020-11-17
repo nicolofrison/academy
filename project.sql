@@ -111,20 +111,21 @@ ALTER TABLE `Views` ADD CONSTRAINT `FKViewsUsersId` FOREIGN KEY (`usersId`) REFE
 ALTER TABLE `Views` ADD CONSTRAINT `FKViewsEpisodesId` FOREIGN KEY (`episodesId`) REFERENCES `Episodes`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `Views` ADD CONSTRAINT `FKViewsMoviesId` FOREIGN KEY (`moviesId`) REFERENCES `Movies`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-CREATE VIEW `V_Episodes` AS SELECT `D`.*,
-        `E`.`seasonNumber`, `E`.`episodeNumber`, `E`.`quality`,
+CREATE VIEW `V_Episodes` AS SELECT `E`.id, `E`.`seasonNumber`, `E`.`episodeNumber`, `E`.`quality`,
+        D.title, D.description, D.genre, D.duration, D.actors, D.releaseDate, D.creationDate,
         (SELECT COUNT(*) FROM Likes L WHERE E.id = L.moviesId) AS `likes`,
         (SELECT COUNT(*) FROM Views V WHERE E.id = V.moviesId) AS `views`
     FROM `Details` `D` INNER JOIN `Episodes` `E` ON `D`.`id` = `E`.`detailsId`;
 
-CREATE VIEW `V_Movies` AS SELECT `D`.*,
-        `M`.`quality`,
+CREATE VIEW `V_Movies` AS SELECT `M`.id, `M`.`quality`,
+        D.title, D.description, D.genre, D.duration, D.actors, D.releaseDate, D.creationDate,
         (SELECT COUNT(*) FROM Likes L WHERE M.id = L.moviesId) AS `likes`,
         (SELECT AVG(rating) FROM Reviews R WHERE M.id = R.moviesId) AS `rating`,
         (SELECT COUNT(*) FROM Views V WHERE M.id = V.moviesId) AS `views`
     FROM `Details` `D` INNER JOIN `Movies` `M` ON `D`.`id` = `M`.`detailsId`;
 
-CREATE VIEW `V_Series`  AS SELECT `D`.*,
+CREATE VIEW `V_Series`  AS SELECT S.id,
+        D.title, D.description, D.genre, D.duration, D.actors, D.releaseDate, D.creationDate,
         (SELECT MAX(DISTINCT `E`.`seasonNumber`) FROM Episodes E WHERE S.id = E.seriesId) AS `seasonsNumber`,
         (SELECT COUNT(*) FROM Likes L WHERE S.id = L.seriesId) AS `likes`,
         (SELECT AVG(rating) FROM Reviews R WHERE S.id = R.seriesId) AS `rating`

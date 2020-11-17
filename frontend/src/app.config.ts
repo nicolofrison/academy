@@ -54,7 +54,7 @@ appModule
       .when('/moviedetails/:id', {
         template: '<my-movie-details></my-movie-details>',
       })
-      .when('/seriedetails/:seriesId', {
+      .when('/seriedetails/:id', {
         template: '<my-serie-details></my-serie-details>',
       })
       .when('/searchresults', {

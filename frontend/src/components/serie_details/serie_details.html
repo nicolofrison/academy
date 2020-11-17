@@ -27,7 +27,7 @@
 
 <a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Back</a>
 <a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Watch</a>
-<a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Save for later</a>
+<a href="javascript:;" class="btn btn-info"role="button" aria-pressed="true" ng-click="$ctrl.addVideoToFavorite()">Save for later</a>
 <br><br>
 
 <form class="form-inline">
@@ -43,7 +43,7 @@
     <div class="row">
         <p>Episodes</p><br><br>
     </div>
-    <my-row type-of-service="episodesCtrl.type"></my-row>
+    <my-row type-of-service="$ctrl.type"></my-row>
 </div>
 <br></br>
 

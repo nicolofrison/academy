@@ -1,39 +1,29 @@
-<br class="container">
-<h1>FERIDE</h1>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-<span class="badge badge-pill badge-info">2018</span>
-<span class="badge badge-pill badge-info">5 STAGIONI</span>
-<span class="badge badge-pill badge-dark">Dramma</span>
+<h1>{{$ctrl.serie.title}}</h1>
 
-<p>Dominic "Dom" Cobb è un "estrattore", un professionista che si occupa di estrarre segreti
-    dalle menti delle persone mentre queste dormono, infiltrandosi nei loro sogni tramite un apparecchio
-     a orologeria in suo possesso, che permette a un gruppo di persone di partecipare a un "sogno condiviso".
-     Cobb e la sua squadra normalmente si servono di trucchi e inganni per carpire le informazioni
-     della vittima, la quale crede di essere nella realtà e non sospetta nulla.</p>
+<span class="badge badge-pill badge-info">{{$ctrl.serie.releaseDate | date : 'yyyy'}}</span>
+<span class="badge badge-pill badge-info">{{$ctrl.serie.seasonsNumber}}m</span>
+<span class="badge badge-pill badge-dark">{{$ctrl.serie.genre}}</span>
+<br>
+<em class="fas fa-star checked" ng-repeat="i in $ctrl.posRating track by $index"></em>
+<em class="far fa-star" ng-repeat="i in $ctrl.negRating track by $index"></em>
+{{$ctrl.serie.ratingsNumber}}
+<i class="fas fa-heart"></i>
+{{$ctrl.serie.likes}}
 
-<h6>CAST:
-    A.J. Buckley
-    A.J. Cook
-    Aamir Khan
-    Aamir Ali Malik
-    Aaron Eckhart
-    Aaron Kwock
-    Aaron Stanford
-    Aaron Taylor-John</h6>
+<p>{{$ctrl.serie.description}}</p>
+
+<h6>CAST: {{$ctrl.serie.actors}}</h6>
 
 <a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Back</a>
 <a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Watch</a>
 <a href="javascript:;" class="btn btn-info"role="button" aria-pressed="true" ng-click="$ctrl.addVideoToFavorite()">Save for later</a>
-<br><br>
+<br/><br/>
 
 <form class="form-inline">
     <label >Choose a season:  </label>
-    <select  id="inlineFormCustomSelectPref" ng-options="('Season ' + seasonNumber) for seasonNumber in $ctrl.seasons track by seasonNumber"
-             ng-model="$ctrl.selectedSeason">
+    <select id="inlineFormCustomSelectPref"
+            ng-model="$ctrl.selectedSeason"
+            ng-options="('Season ' + seasonNumber) for seasonNumber in $ctrl.seasons track by seasonNumber">
     </select>
 </form>
 
@@ -41,9 +31,9 @@
     <div class="row">
         <p>Episodes</p><br><br>
     </div>
-    <my-row series-id="$ctrl.seriesId" season-number="$ctrl.selectedSeason" type-of-service="$ctrl.type"></my-row>
+    <my-row series-id="$ctrl.serie.id" season-number="$ctrl.selectedSeason" type-of-service="$ctrl.rowType"></my-row>
 </div>
-<br></br>
+<br/>
 
 <div class="container-fluid">
     <div class="card card-container">
@@ -110,5 +100,4 @@
             <p>Best series ever</p>
       </div>
     </div>
-</div>
 </div>

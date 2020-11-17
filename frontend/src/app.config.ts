@@ -20,7 +20,7 @@ import './components/home/home.component';
 import './components/movies/movies.component';
 import './components/movieDetails/movieDetails.component';
 import './components/series/series.component';
-import './components/serie_details/serie_details.component';
+import './components/serieDetails/serieDetails.component';
 import './components/searchResults/searchResults.component';
 import './components/favorites/favorites.component';
 

@@ -45,4 +45,14 @@ appModule
         getSeriesByFilters(filters).then(resolve).catch(reject);
       }
     }
+
+    const getSerieById = async function(serieId: number) {
+      return (await seriesApi.getSerieById(serieId)).data;
+    }
+
+    this.getSerieByIdPromiseFunction = (id: number) => {
+      return function (resolve: any, reject: any) {
+        getSerieById(id).then(resolve).catch(reject);
+      }
+    }
   }]);

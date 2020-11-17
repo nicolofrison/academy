@@ -1,5 +1,21 @@
-<div class="row" >
-    <div class="col-3" ng-repeat="video in searchResultsController.videosList">
-        <a href="{{video.href}}"><image src="/assets/img/prova.png" height="200px" width="150"></image></a>
+<div class="container">
+    <h1>FAVORITES</h1><br><br>
+    <form class="form-inline">
+        <select  id="inlineFormCustomSelectPref">
+            <option value="genre" selected>GENRE</option>
+            <option value="Animation">Animation</option>
+            <option value="Drama">Drama</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Kids">Kids</option>
+            <option value="Documentary">Documentary</option>
+        </select>
+    </form><br><br>
+
+    <div class="row" >
+        <div class="col-3" ng-repeat="video in searchResultsController.videosList">
+            <p>{{video.title}}</p>
+            <a href="{{video.href}}"><image src="/assets/img/prova.png" height="200px" width="150"></image></a>
+        </div>
     </div>
+
 </div>

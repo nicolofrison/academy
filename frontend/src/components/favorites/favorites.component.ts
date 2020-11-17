@@ -8,12 +8,13 @@ function favoritesController($routeParams: ISearchFilters, favoritesService: any
   this.videosList = [];
 
   const getFavorites = (favoritesVideosList: any) => {
+    console.log('getFavoritesVideosList');
     console.log(favoritesVideosList);
 
     this.videosList = favoritesVideosList;
   };
 
-  const userId = sessionService.get('userId');
+  const userId: number = +sessionService.get('userId');
 
   $q(favoritesService.getFavoritesVideos(userId))
     .then(getFavorites)

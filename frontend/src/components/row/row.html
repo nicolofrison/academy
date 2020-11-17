@@ -1,5 +1,5 @@
-<div class="row" >
-    <div class="col" ng-repeat="item in $ctrl.videosList">
+<div class="d-flex flex-nowrap overflow-auto" >
+    <div class="col-4" ng-repeat="item in $ctrl.videosList">
         <p>{{item.title}}</p>
         <div>
             <a href="{{item.href}}"><image src="/assets/img/prova.png" height="200px" width="150"></image></a>

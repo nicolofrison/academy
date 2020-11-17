@@ -9,5 +9,6 @@ export default interface IVideo {
   creationDate: string,
   quality?: string,
   type: 'movie' | 'serie' | 'episode',
-  href: string
+  href: string,
+  favoritesId?: number
 }

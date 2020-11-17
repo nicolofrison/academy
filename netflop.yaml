@@ -69,7 +69,7 @@ paths:
   '/favorites/{favoritesId}':
     parameters:
       - schema:
-          type: string
+          type: number
         name: favoritesId
         in: path
         required: true

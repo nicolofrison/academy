@@ -23,7 +23,9 @@ appModule
           myVideo.type = 'movie';
           myVideo.href = '/#!/moviedetails/' + m.id;
 
-          if (favorites.find((f) => f.moviesId === myVideo.id)) {
+          const favorite = favorites.find((f) => f.moviesId === myVideo.id);
+          if (favorite) {
+            myVideo.favoritesId = favorite.id;
             videos.push(myVideo);
           }
         });
@@ -39,7 +41,9 @@ appModule
           myVideo.type = 'serie';
           myVideo.href = '/#!/seriedetails/' + s.id;
 
-          if (favorites.find((f) => f.seriesId === myVideo.id)) {
+          const favorite = favorites.find((f) => f.seriesId === myVideo.id);
+          if (favorite) {
+            myVideo.favoritesId = favorite.id;
             videos.push(myVideo);
           }
         });
@@ -58,6 +62,12 @@ appModule
     this.addFavoriteVideoPromiseFunction = (favoritesPostRequest: FavoritesPostRequest) => {
       return function (resolve: any, reject: any) {
         favoritesApi.postFavorites(favoritesPostRequest).then(resolve).catch(reject);
+      }
+    }
+
+    this.rmFavoriteVideoPromiseFunction = (favoriteId: number) => {
+      return function (resolve: any, reject: any) {
+        favoritesApi.deleteFavoritesFavoriteId(favoriteId).then(resolve).catch(reject);
       }
     }
   }]);

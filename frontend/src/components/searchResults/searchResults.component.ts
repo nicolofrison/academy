@@ -5,6 +5,7 @@ import IVideo from "../../models/Video";
 import ISearchFilters from "../../models/SearchFilters";
 
 function resultsController($routeParams: ISearchFilters, moviesService: any, seriesService: any, $q:any, $scope:any) {
+  this.page = 'search results';
   this.videosList = [];
 
   const updateVideosListWithMovies = (moviesList: any) => {

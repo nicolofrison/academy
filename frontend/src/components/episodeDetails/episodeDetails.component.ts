@@ -13,7 +13,7 @@ appModule
       $q(episodesService.getEpisodeByIdPromiseFunction(+$routeParams.id))
         .then((episode: Episode) => {
           this.episode = episode;
-          console.log(episode);
+          //  console.log(episode);
         })
         .catch((e: any) => {
           console.error(e);

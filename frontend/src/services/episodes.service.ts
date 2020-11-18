@@ -16,4 +16,14 @@ appModule
         getEpisodesByFilters(filters).then(resolve).catch(reject);
       }
     }
+
+    const getEpisodeById = async function(episodeId: number) {
+      return (await episodesApi.getEpisodeById(episodeId)).data;
+    }
+
+    this.getEpisodeByIdPromiseFunction = (id: number) => {
+      return function (resolve: any, reject: any) {
+        getEpisodeById(id).then(resolve).catch(reject);
+      }
+    }
   }]);

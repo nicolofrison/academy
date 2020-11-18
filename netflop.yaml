@@ -27,6 +27,26 @@ paths:
           in: query
           name: seriesId
       description: Return a list of episodes
+  '/episodes/{episodesId}':
+    parameters:
+        - schema:
+            type: number
+          name: episodesId
+          in: path
+          required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Episodes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Episode'
+      operationId: get-episode-by-Id
+      description: Return the episode info
   /favorites:
     post:
       summary: ''
@@ -524,6 +544,8 @@ components:
           type: number
         likes:
           type: number
+        ratingsNumber:
+          type: number
       x-tags:
         - Movies
       required:
@@ -597,6 +619,14 @@ components:
           type: string
         creationDate:
           type: string
+        rating:
+          type: number
+        ratingsNumber:
+          type: number
+        likes:
+          type: number
+        seasonsNumber:
+          type: number
       x-tags:
         - Series
       required:

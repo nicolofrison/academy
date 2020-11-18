@@ -18,11 +18,12 @@ import './components/signUp/signUp.component';
 import './components/profile/profile.component';
 import './components/home/home.component';
 import './components/movies/movies.component';
-import './components/movie_details/movie_details.component';
 import './components/series/series.component';
-import './components/serie_details/serie_details.component';
-import './components/searchResults/searchResults.component';
+import './components/episodeDetails/episodeDetails.component';
+import './components/movieDetails/movieDetails.component';
+import './components/serieDetails/serieDetails.component';
 import './components/favorites/favorites.component';
+import './components/searchResults/searchResults.component';
 
 appModule
   .config(['$routeProvider', function config($routeProvider: any) {

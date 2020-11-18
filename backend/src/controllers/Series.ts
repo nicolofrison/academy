@@ -1,6 +1,8 @@
 const { body, validationResult } = require('express-validator');
 const db = require('../config/dbConfig');
 
+const { isOkPacket } = db;
+
 const seriesController = (app) => {
   app.get('/series', async (req, res) => {
     try {
@@ -79,9 +81,16 @@ const seriesController = (app) => {
 
   app.get('/series/:input', async (req, res) => {
     try {
-      const selectAll = await db.executeQuery('SELECT * FROM Series WHERE id=?', [req.params.input]);
-      res.status(200);
-      res.send(selectAll);
+      const selectAll = await db.executeQuery('SELECT * FROM V_Series WHERE id=?', [+req.params.input]);
+
+      if (!isOkPacket(selectAll) && selectAll.length > 0) {
+        res.status(200);
+        res.send(selectAll[0]);
+      } else {
+        console.error(selectAll);
+        res.status(409);
+        res.send('');
+      }
     } catch (e) {
       res.status(500);
       res.send('server error');

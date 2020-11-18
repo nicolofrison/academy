@@ -3,6 +3,8 @@ import { Episode } from '@models/Episode';
 const { body, validationResult } = require('express-validator');
 const db = require('../config/dbConfig');
 
+const { isOkPacket } = db;
+
 const episodesController = (app) => {
   app.get('/episodes', async (req, res) => {
     try {
@@ -70,9 +72,16 @@ const episodesController = (app) => {
 
   app.get('/Episodes/:input', async (req, res) => {
     try {
-      const selectAll = await db.executeQuery('SELECT * FROM Episodes WHERE id=?', [req.params.input]);
-      res.status(200);
-      res.send(selectAll);
+      const selectAll = await db.executeQuery('SELECT * FROM V_Episodes WHERE id=?', [+req.params.input]);
+
+      if (!isOkPacket(selectAll) && selectAll.length > 0) {
+        res.status(200);
+        res.send(selectAll[0]);
+      } else {
+        console.error(selectAll);
+        res.status(409);
+        res.send('');
+      }
     } catch (e) {
       res.status(500);
       res.send('server error');

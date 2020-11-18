@@ -4,7 +4,7 @@ info:
   version: '1.0'
   description: Netflop apis
 servers:
-  - url: 'http://localhost:3100'
+  - url: 'http://localhost:3000'
 paths:
   /episodes:
     get:
@@ -27,6 +27,26 @@ paths:
           in: query
           name: seriesId
       description: Return a list of episodes
+  '/episodes/{episodesId}':
+    parameters:
+        - schema:
+            type: number
+          name: episodesId
+          in: path
+          required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Episodes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Episode'
+      operationId: get-episode-by-Id
+      description: Return the episode info
   /favorites:
     post:
       summary: ''
@@ -203,7 +223,7 @@ paths:
   '/movies/{moviesId}':
     parameters:
       - schema:
-          type: string
+          type: number
         name: moviesId
         in: path
         required: true
@@ -330,7 +350,7 @@ paths:
   '/series/{seriesId}':
     parameters:
       - schema:
-          type: string
+          type: number
         name: seriesId
         in: path
         required: true
@@ -518,6 +538,14 @@ components:
           type: string
         quality:
           type: string
+        rating:
+          type: number
+        views:
+          type: number
+        likes:
+          type: number
+        ratingsNumber:
+          type: number
       x-tags:
         - Movies
       required:
@@ -591,6 +619,14 @@ components:
           type: string
         creationDate:
           type: string
+        rating:
+          type: number
+        ratingsNumber:
+          type: number
+        likes:
+          type: number
+        seasonsNumber:
+          type: number
       x-tags:
         - Series
       required:

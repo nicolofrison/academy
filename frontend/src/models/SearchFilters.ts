@@ -6,10 +6,7 @@ export interface ISearchFilters {
   type?: 'movies' | 'series' | 'episode',
   orderBy?: 'creationDate' | 'likes' | 'ratings' | 'views',
   orderType?: 'asc' | 'desc',
-}
-
-export interface ISeriesFilters extends ISearchFilters {
-  seasonNumber?: number;
+  seasonNumber?: number,
   seriesId?: number
 }
 

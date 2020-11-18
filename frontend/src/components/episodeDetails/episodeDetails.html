@@ -1,0 +1,18 @@
+<h1>{{$ctrl.episode.title}}</h1>
+
+<span class="badge badge-pill badge-dark">{{'Season ' + $ctrl.episode.seasonNumber}}</span>
+<span class="badge badge-pill badge-dark">{{'Episode ' + $ctrl.episode.episodeNumber}}</span>
+<span class="badge badge-pill badge-info">{{$ctrl.episode.releaseDate | date : 'yyyy'}}</span>
+<span class="badge badge-pill badge-info">{{$ctrl.episode.duration}}m</span>
+<br>
+<i class="fas fa-eye"></i>
+{{$ctrl.episode.views}}
+<i class="fas fa-heart"></i>
+{{$ctrl.episode.likes}}
+
+<p>{{$ctrl.episode.description}}</p>
+
+<h6>CAST: {{$ctrl.episode.actors}}</h6>
+
+<a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Back</a>
+<a href="/#!/home.html"class="btn btn-info"role="button" aria-pressed="true">Watch</a>

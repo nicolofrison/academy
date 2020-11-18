@@ -24,4 +24,14 @@ appModule
         getMoviesByFilters(filters).then(resolve).catch(reject);
       }
     }
+
+    const getMovieById = async function(movieId: number) {
+      return (await moviesApi.getMovieById(movieId)).data;
+    }
+
+    this.getMovieByIdPromiseFunction = (id: number) => {
+      return function (resolve: any, reject: any) {
+        getMovieById(id).then(resolve).catch(reject);
+      }
+    }
   }]);

@@ -1,11 +1,11 @@
 import appModule from '../app.module';
 import {Episode, EpisodesApi, SeriesApi} from "../lib/openapi";
-import {ISearchFilters, ISeriesFilters} from "../models/SearchFilters";
+import {ISearchFilters} from "../models/SearchFilters";
 
 appModule
   .service('seriesApi', SeriesApi)
   .service('seriesService', ['seriesApi', 'episodesApi', function(seriesApi: SeriesApi, episodesApi: EpisodesApi) {
-    const getSeriesByFilters = async function(filters: ISeriesFilters) {
+    const getSeriesByFilters = async function(filters: ISearchFilters) {
       let orderBy: 'creationDate' | 'likes' | 'ratings' | 'views' = undefined;
       let orderType: 'asc' | 'desc' = undefined;
       if (filters.orderBy) {
@@ -19,7 +19,7 @@ appModule
     }
     this.getSeries = getSeriesByFilters;
 
-    const getSeriesSeasonsByFilters = async function(filters: ISeriesFilters) {
+    const getSeriesSeasonsByFilters = async function(filters: ISearchFilters) {
       const episodes: Episode[] = (await episodesApi.getEpisodes(filters.seriesId)).data;
       const seasons: number[] = [];
 
@@ -34,13 +34,13 @@ appModule
       return seasons;
     }
 
-    this.getSeriesSeasonsPromiseFunction = (filters: ISeriesFilters) => {
+    this.getSeriesSeasonsPromiseFunction = (filters: ISearchFilters) => {
       return function (resolve: any, reject: any) {
         getSeriesSeasonsByFilters(filters).then(resolve).catch(reject);
       }
     }
 
-    this.getSeriesPromiseFunction = (filters: ISeriesFilters) => {
+    this.getSeriesPromiseFunction = (filters: ISearchFilters) => {
       return function (resolve: any, reject: any) {
         getSeriesByFilters(filters).then(resolve).catch(reject);
       }

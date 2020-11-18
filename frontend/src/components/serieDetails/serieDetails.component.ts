@@ -1,7 +1,7 @@
 import appModule from '../../app.module';
 import '../row/row.component';
 import {FavoritesPostRequest, Movie, Serie} from '../../lib/openapi';
-import {ISeriesFilters} from "../../models/SearchFilters";
+import {ISearchFilters} from "../../models/SearchFilters";
 import {IComponentController} from "angular";
 
 const cssPath = '/src/components/movieDetails/movieDetails.css';
@@ -22,7 +22,7 @@ class SerieDetailsController implements IComponentController {
     this.$q(seriesService.getSerieByIdPromiseFunction(+$routeParams.id))
       .then((serie: Serie) => {
         this.serie = serie;
-        console.log(serie);
+        //  console.log(serie);
         if (this.serie.rating) {
           this.posRating = new Array(this.serie.rating);
           this.negRating = new Array(5-this.serie.rating);
@@ -33,7 +33,7 @@ class SerieDetailsController implements IComponentController {
         alert('There was an error during the request of the serie. Retry later!')
       });
 
-    const seriesFilter: ISeriesFilters = {seriesId: +$routeParams.id};
+    const seriesFilter: ISearchFilters = {seriesId: +$routeParams.id};
     $q(seriesService.getSeriesSeasonsPromiseFunction(seriesFilter))
       .then((seasons: number[]) => {
         this.seasons = seasons;

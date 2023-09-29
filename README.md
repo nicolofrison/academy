@@ -21,6 +21,7 @@ Current features:
 
 ## Database
 The database has to be initialized before using the app. It has to be MySQL.
+You can use the `docker-compose` in the main folder to make a mysql db up and running. Remember to copy the settings of the database from the `docker-compose` to the backend `.env`
 
 ## Backend
 1. Go inside the `backend` folder
@@ -30,7 +31,7 @@ The database has to be initialized before using the app. It has to be MySQL.
 # the port you want to use for the backend
 APP_PORT=
 
-# the mysql datatabase settings
+# the mysql datatabase settings (take them form the docker-compose if you are using it)
 MYSQL_HOST=
 MYSQL_PORT=
 MYSQL_USER=

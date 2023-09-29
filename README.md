@@ -15,6 +15,7 @@ Implemented with the following technologies:
 
 Current features:
 - Retrieve movies and series tv from the database
+- Add and remove movies/seriesTv to favorites if logged in
 
 # Installation
 
@@ -37,6 +38,12 @@ MYSQL_PASS=
 MYSQL_DB=
 ```
 4. Run `npm start` to make the backend start
+
+### Notes
+The default backend port is 3000 defined in the `netflop.yaml`. if you want to change it:
+- update the `APP_PORT` variable in the backend `.env`
+- edit the `netflop.yaml`, under `servers` `url`, edit the url with the port that you want to use
+- in the frontend re-run the `npm run generate:api`
 
 ## Frontend
 1. Go inside the `frontend` folder

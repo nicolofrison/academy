@@ -22,8 +22,8 @@ export interface Episode {
     "releaseDate": string;
     "creationDate": string;
     "quality": string;
-    "season": number;
-    "episode": number;
+    "seasonNumber": number;
+    "episodeNumber": number;
     "seriesId": number;
 }
 

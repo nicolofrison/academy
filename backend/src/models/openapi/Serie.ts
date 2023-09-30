@@ -17,9 +17,13 @@ export interface Serie {
     "title": string;
     "description": string;
     "genre": string;
-    "duration": string;
+    "duration": number;
     "actors": string;
     "releaseDate": string;
     "creationDate": string;
+    "rating"?: number;
+    "ratingsNumber"?: number;
+    "likes"?: number;
+    "seasonsNumber"?: number;
 }
 

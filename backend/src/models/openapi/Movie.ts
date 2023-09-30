@@ -22,5 +22,9 @@ export interface Movie {
     "releaseDate": string;
     "creationDate": string;
     "quality": string;
+    "rating"?: number;
+    "views"?: number;
+    "likes"?: number;
+    "ratingsNumber"?: number;
 }
 
